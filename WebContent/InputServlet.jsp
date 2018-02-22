@@ -12,5 +12,9 @@
 </head>
 <body>
 
+	<form>
+		<input type="text" id="inputBox" name="input" placeholder="Enter topic">
+	
+	</form>
 </body>
 </html>
