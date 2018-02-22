@@ -12,6 +12,9 @@
 			Collage for topic
 		</div>
 		
+		<div id="collageSpace">
+		
+		</div>
 	
 		<form>
 			<div id="inputStuff">
@@ -19,5 +22,9 @@
 				<button type="button" id="inputButton">Build Another Collage</button>
 			</div>
 		</form>
+		
+		<div id="previousCollages">
+		
+		</div>
 	</body>
 </html>
