@@ -13,8 +13,10 @@
 <body>
 
 	<form>
-		<input type="text" id="inputBox" name="input" placeholder="Enter topic">
-	
+		<div id="inputStuff">
+			<input type="text" id="inputBox" name="input" placeholder="Enter topic">
+			<button type="button" id="inputButton">Build Collage</button>
+		</div>
 	</form>
 </body>
 </html>
