@@ -1,1 +1,11 @@
 @charset "UTF-8";
+
+body {
+	background-color: #ffffff;
+}
+
+#title {
+	font-size: 24px;
+	font-color: black;
+	text-align: center;
+}
