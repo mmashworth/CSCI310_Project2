@@ -11,9 +11,8 @@ body {
 }
 
 #inputStuff {
-	position: absolute;
-	top: 60%;
- 	left: 45%;	
+	position: absolute;	
+	left: 45%;
  	height: 30px;
 	display: block;
     margin-left: auto;
@@ -28,4 +27,17 @@ body {
 #exportButton {
 	background-color: #a9a9a9;
 	color: white;
+}
+
+#collageSpace {
+	width: 800px;
+	height:600px;
+	margin: auto;
+}
+
+#previousCollages {
+	position:absolute;
+   	top:100%;
+   	width:100%;
+   	height:150px;
 }
