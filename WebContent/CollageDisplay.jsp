@@ -11,5 +11,13 @@
 		<div id="title">
 			Collage for topic
 		</div>
+		
+	
+		<form>
+			<div id="inputStuff">
+				<input type="text" id="inputBox" name="input" placeholder="Enter another topic">
+				<button type="button" id="inputButton">Build Another Collage</button>
+			</div>
+		</form>
 	</body>
 </html>
