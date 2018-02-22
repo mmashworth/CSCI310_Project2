@@ -13,5 +13,20 @@ public class Collage {
 		positions = new Point2D[30];
 	}
 	
+	//methods
+	public makeCollage(String images, int[] angeles, Point2D[] positions) {
+		
+	}
 	
+	public void exportCollage() {
+		
+	}
+	
+	public void scaleCollage() {
+		
+	}
+	
+	public void displayCollage() {
+		
+	}
 }
