@@ -5,7 +5,12 @@
 <head>
 
   <link rel="stylesheet" href="inputStyle.css">
-
+<script type="text/javascript">
+ function openPage(pageURL)
+ {
+ window.location.href = pageURL;
+ }
+</script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -15,7 +20,7 @@
 	<form>
 		<div id="inputStuff">
 			<input type="text" id="inputBox" name="input" placeholder="Enter topic">
-			<button type="button" id="inputButton">Build Collage</button>
+			<button type="button" id="inputButton" onclick="openPage('CollageDisplay.jsp')" />Build Collage</button>
 		</div>
 	</form>
 </body>
