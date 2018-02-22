@@ -14,7 +14,7 @@ public class Collage {
 	}
 	
 	//methods
-	public makeCollage() {
+	public void makeCollage() {
 		
 	}
 	
