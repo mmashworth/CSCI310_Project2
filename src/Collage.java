@@ -14,7 +14,7 @@ public class Collage {
 	}
 	
 	//methods
-	public makeCollage(String images, int[] angeles, Point2D[] positions) {
+	public makeCollage() {
 		
 	}
 	
