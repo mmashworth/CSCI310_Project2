@@ -20,6 +20,7 @@
 			<div id="inputStuff">
 				<input type="text" id="inputBox" name="input" placeholder="Enter another topic">
 				<button type="button" id="inputButton">Build Another Collage</button>
+				<button type="button" id="exportButton">Export Collage</button>
 			</div>
 		</form>
 		
