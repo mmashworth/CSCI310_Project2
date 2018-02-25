@@ -4,6 +4,9 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
+import java.util.List;
+
 import javax.swing.JFrame;
 
 public class CollageTestMain {
