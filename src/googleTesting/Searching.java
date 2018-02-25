@@ -16,7 +16,7 @@ public class Searching {
 	private String cx;
 	
 	public Searching(){
-	    key="AIzaSyDTKzqPi1WvntRYtLHEAy-OzxOLrkOv4hA";		//This is a hardcoded value-- it is the api key
+	    key="AIzaSyAJQX6j4gUuScG4Nj9h8jVVuNllgBPM18o";		//This is a hardcoded value-- it is the api key
 	    cx="016372075374369882146:pkcnxhfl16m";				//This is a hardcoded value-- it is the search engine key
 	}
 	
