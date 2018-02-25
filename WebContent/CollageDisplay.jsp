@@ -5,11 +5,17 @@
 	<head>
 		<link rel="stylesheet" href="collageDisplayStyle.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Insert title here</title>
+		<title></title>
+		
+		<script>
+			function changeTitle(element) {
+				document.getElementById('topic').innerHTML = element.value;
+			}
+		</script>
 	</head>
 	<body>
 		<div id="title">
-			Collage for topic
+			Collage for topic <span id="topic"></span>
 		</div>
 		
 		<div id="collageSpace">
@@ -20,7 +26,7 @@
 			<div id="inputStuff">
 				<br />
 				<input type="text" id="inputBox" name="input" placeholder="Enter another topic">
-				<button type="button" id="inputButton">Build Another Collage</button>
+				<button type="button" id="inputButton" onclick="changeTitle(input)">Build Another Collage</button>
 				<button type="button" id="exportButton">Export Collage</button>
 			</div>
 		</form>
