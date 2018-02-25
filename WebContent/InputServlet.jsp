@@ -8,9 +8,27 @@
 <script type="text/javascript">
  function openPage(pageURL)
  {
- window.location.href = pageURL;
+ 	window.location.href = pageURL;
  }
 </script>
+
+<script type="text/javascript">
+
+function enterInput(pageURL) {
+	document.getElementById('inputBox').onkeypress = function(e) {
+		var event = e || window.event;
+	    var charCode = event.which || event.keyCode;
+	
+	    if ( charCode == '13' ) {
+	      // Enter pressed
+	      
+	      window.location.href = pageURL;
+	      return false;
+	    }
+	}
+}
+</script>
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -19,7 +37,7 @@
 
 	<form>
 		<div id="inputStuff">
-			<input type="text" id="inputBox" name="input" placeholder="Enter topic">
+			<input type="text" id="inputBox" name="input" placeholder="Enter topic" onkeydown="enterInput('CollageDisplay.jsp')">
 			<button type="button" id="inputButton" onclick="openPage('CollageDisplay.jsp')" />Build Collage</button>
 		</div>
 	</form>
