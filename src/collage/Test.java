@@ -1,7 +1,7 @@
 package collage;
 
 import java.util.List;
-
+import java.util.Random;
 import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -67,25 +67,24 @@ public class Test extends JPanel {
 		   nameList.add("https://sites.google.com/site/ilikedirt/30853451.Tiffy2-full.jpg");
 		   nameList.add("https://upload.wikimedia.org/wikipedia/commons/9/92/2008-05-04_at_18-26-44-Forgetmenot-Flower.jpg");
 		   nameList.add("https://upload.wikimedia.org/wikipedia/commons/8/81/Leucanthemum_vulgare_%27Filigran%27_Flower_2200px_edit1.jpg");
+			
 			*/
+		   
 		   Searching test = new Searching();
 		   List<String> nameList = test.searchQuery("dog");
 		   
-		   /*
-		   List<Integer> angelList = new ArrayList<Integer>();
-		   angelList.add(20);
-		   angelList.add(0);
-		   angelList.add(-20);
-		   angelList.add(10);
-		   */
+		   
+		  // List<Integer> angelList = new ArrayList<Integer>();
+		  // angelList.add(20);
+		   //angelList.add(0);
+		   //angelList.add(-20);
+		   //angelList.add(10);
+		   
 		   List<Integer> angleList = new ArrayList<Integer>();
 		   for (int i = 0; i < 30; i++) {
-			   if (i % 3 == 0)
-				   angleList.add(20);
-			   else if (i % 3 == 1)
-				   angleList.add(0);
-			   else
-				   angleList.add(-20);
+			   Random rand = new Random();
+			   int input = rand.nextInt(91) - 45;
+			   angleList.add(input);
 				   
 		   }
 			   
