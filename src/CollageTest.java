@@ -32,6 +32,7 @@
 
 import java.io.*;
 import java.net.*;
+import java.util.Random;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.*;
@@ -51,7 +52,7 @@ class CollageTest extends Component {
 	    			images[i] = ImageIO.read(imageSrcs[i]);
 	    			width = 800;
 	    			height = 600;
-        			images[i] = getScaledImage(images[i], width/6, height/5); //scale the image to make it smaller
+        			images[i] = getScaledImage(images[i], width/5, height/5); //scale the image to make it smaller
 	    		}
 	         
 	    } catch (MalformedURLException e) {
@@ -83,7 +84,22 @@ class CollageTest extends Component {
     public void paint(Graphics g) {
         for(int i = 0; i < 5; i++) {
         		for(int j = 0; j < 6; j++) {
-        			g.drawImage(images[i], j*width/6, i*height/5, (1+j)*width/6, (1+i)*height/5, 0, 0, width/6, height/5, null);
+        			AffineTransform identity = new AffineTransform();
+
+        			Graphics2D g2d = (Graphics2D)g;
+        			AffineTransform trans = new AffineTransform();
+        			trans.setTransform(identity);
+        			trans.translate(j*width/6, i*height/5); //position
+        			
+        			Random rand = new Random(); 
+        			int angles = rand.nextInt(91) - 45; 
+        			
+        			trans.rotate( Math.toRadians(angles) );
+        			g2d.drawImage(images[i], trans, this);
+        			
+        			
+        			//g.drawImage(images[i], j*width/6, i*height/5, (1+j)*width/6, (1+i)*height/5, 0, 0, width/6, height/5, null);
+//the parameters are (source image, destination upper-left corner x, destination upper-left corner y, destination lower-right corner x, destination lower-right corner y, source upper-left corner x, source upper-left corner y, source lower-right corner x, source lower-right corner y, just-put-null)
         		}
         }
     }

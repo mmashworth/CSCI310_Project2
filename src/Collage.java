@@ -1,7 +1,20 @@
+import java.awt.BorderLayout;
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-public class Collage {
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Collage{
 	private String[] images;
 	private int[] angles;
 	private BufferedImage collage;
@@ -29,4 +42,5 @@ public class Collage {
 	public void displayCollage() {
 		
 	}
+	
 }
