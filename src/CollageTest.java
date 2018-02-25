@@ -42,7 +42,6 @@ class CollageTest extends Component {
 	    	}
     }
 
-
     public Dimension getPreferredSize() {
         return new Dimension(width, height);
     }
@@ -74,17 +73,15 @@ class CollageTest extends Component {
         			trans.translate(j*width/6, i*height/5); //position
         			
         			int angle = getRandomAngle();
-        			
-        			trans.rotate( Math.toRadians(angle) );
+        			trans.rotate( Math.toRadians(angle) ); //rotate
         			g2d.drawImage(images[counter], trans, this);
-        			//g.drawImage(images[counter], j*width/6, i*height/5, (1+j)*width/6, (1+i)*height/5, 0, 0, width/6, height/5, null);
-//the parameters are (source image, destination upper-left corner x, destination upper-left corner y, destination lower-right corner x, destination lower-right corner y, source upper-left corner x, source upper-left corner y, source lower-right corner x, source lower-right corner y, just-put-null)
         			++counter;
         		}
         }
     }
     
     public int getRandomAngle() {
+    		
     		Random rand = new Random();
     		return rand.nextInt(91) - 45;
     }
