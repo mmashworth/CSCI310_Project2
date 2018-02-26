@@ -3,25 +3,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+ 	<link rel="stylesheet" href="inputStyle.css">
+	<script type="text/j
+	avascript">
+		 function openPage(pageURL)
+		 {
+		 	window.location.href = pageURL;
+		 }
+	</script>
 
-  <link rel="stylesheet" href="inputStyle.css">
-<script type="text/javascript">
- function openPage(pageURL)
- {
- window.location.href = pageURL;
- }
-</script>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<script type="text/javascript">
+		function enterInput(pageURL) {
+			document.getElementById('inputBox').onkeypress = function(e) {
+				var event = e || window.event;
+				var charCode = event.which || event.keyCode;
+				if ( charCode == '13' ) {
+					// Enter pressed
+				    	window.location.href = pageURL;
+				    	return false;
+				   }
+			}
+		}
+	</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
 </head>
 <body>
-
-	<form>
+	<form action="CollageDisplay.jsp" method="GET">
 		<div id="inputStuff">
-			<input type="text" id="inputBox" name="input" placeholder="Enter topic">
-			<button type="button" id="inputButton" onclick="openPage('CollageDisplay.jsp')" />Build Collage</button>
+			<input type="text" id="inputBox" name="input" placeholder="Enter topic" onkeydown="enterInput('CollageDisplay.jsp')">
+			<button type="submit" id="inputButton" onclick="openPage('CollageDisplay.jsp')"/>Build Collage</button>
 		</div>
 	</form>
+	
 </body>
 </html>
