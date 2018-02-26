@@ -18,6 +18,7 @@
 		</script>
 	</head>
 	<body>
+	
 		<div id="title">
 		<%
 		 String fileName = application.getRealPath("/") + "saved.png";
@@ -27,9 +28,13 @@
 			Collage for <%= request.getSession().getAttribute("topic") %> <span id="topic"></span>
 		</div>
 		
+		
+		
 		<div id="collageSpace">
 			<img alt="collage2" src="saved.png">
 		</div>
+	
+	
 	
 		<form method = "GET" action="BuildCollage" >
 			<div id="inputStuff">
@@ -40,22 +45,26 @@
 			</div>
 		</form>
 		
-		<div id="previousCollages" style="overflow: auto; width: 730px; height: 120px;">
-			<% 
-				if (history != null){
-					for (int i=0; i < history.size(); i++){
-						Picture newPic = history.get(i);
-						String fileName2 = application.getRealPath("/") + "savedAgain" + Integer.toString(i) + ".png";
-				 		String filename = "savedAgain" + Integer.toString(i) + ".png";
-						newPic.writeImage(fileName2, "png");
-				 		%>
-				 		<img alt="collage" src=<%= filename %> style="float: left; width: 160px; height: 120px; margin: 0 5px;">
-				 	<%
-					   }
-				}
-				
-			%>
 		
+		
+		
+		<div id="previousCollages" style="overflow: auto; width: 730px; height: 120px;">
+			<div id="innerPrevCollages" style="width: 5000px;">
+				<% 
+					if (history != null){
+						for (int i=0; i < history.size(); i++){
+							Picture newPic = history.get(i);
+							String fileName2 = application.getRealPath("/") + "savedAgain" + Integer.toString(i) + ".png";
+					 		String filename = "savedAgain" + Integer.toString(i) + ".png";
+							newPic.writeImage(fileName2, "png");
+					 		%>
+					 		<img alt="collage" src=<%= filename %> style="float: left; width: 160px; height: 120px; margin: 0 5px;">
+					 	<%
+						   }
+					}
+				
+				%>
+			</div>
 		</div>
 	</body>
 </html>

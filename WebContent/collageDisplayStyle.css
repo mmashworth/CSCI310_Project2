@@ -15,15 +15,10 @@ body {
 }
 
 #inputStuff {
-
  	padding: 20px;
- 	
-
  	position:relative;
 	top: 50%;
  	left: 37%;	
-
-
 }
 #inputButton {
 	background-color: #a9a9a9;
