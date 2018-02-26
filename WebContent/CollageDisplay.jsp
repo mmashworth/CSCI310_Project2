@@ -45,10 +45,11 @@
 				if (history != null){
 					for (int i=0; i < history.size(); i++){
 						Picture newPic = history.get(i);
-						String fileName2 = application.getRealPath("/") + "savedAgain.png";
-				 		newPic.writeImage(fileName2, "png");
+						String fileName2 = application.getRealPath("/") + "savedAgain" + Integer.toString(i) + ".png";
+				 		String filename = "savedAgain" + Integer.toString(i) + ".png";
+						newPic.writeImage(fileName2, "png");
 				 		%>
-				 		<img alt="collage" src="savedAgain.png" style="float: left; width: 160px; height: 120px; margin: 0 5px;">
+				 		<img alt="collage" src=<%= filename %> style="float: left; width: 160px; height: 120px; margin: 0 5px;">
 				 	<%
 					   }
 				}
