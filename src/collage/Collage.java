@@ -3,14 +3,39 @@ package collage;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import collage.Picture;
+import googleTesting.Searching;
 
 
 public final class Collage {
+	public List<String> getUrls(String topic) {
+		Searching newSearch = new Searching();
+		List<String> urls = new ArrayList<String>();
+		try {
+			urls = newSearch.searchQuery(topic);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return urls;
+	}
+	public List<Integer> getAngles() {
+		List<Integer> angles = new ArrayList<Integer>();
+		for (int i = 0; i < 30; i++) {
+			Random rand = new Random();
+			int input = rand.nextInt(91) - 45;
+			angles.add(input);
+		}
+		return angles;
+
+	}
+	
+	
 	// This code will copy part of one picture to another picture 
 	public static Picture makeCollage (Picture pict, Picture pict2, Picture pict3)
 	{
@@ -127,7 +152,7 @@ public final class Collage {
 		for (int k = 0; k < nameList.size(); k++) {
 			String name = nameList.get(k);
 			Picture pict = new Picture(width, height, name);
-
+			pict.addFrame();
 			// rotate the picture to angel degree
 			int angel = angelList.get(k).intValue();
 			if ( angel != 0 )

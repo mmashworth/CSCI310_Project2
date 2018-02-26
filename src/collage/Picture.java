@@ -1,19 +1,20 @@
 package collage;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-//import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.io.File;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.awt.Graphics2D;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
+import javax.swing.*;
 
 public class Picture {
+	private String topic;
 	private boolean setWH = false;
 	private int width;
 	private int height;
@@ -22,6 +23,12 @@ public class Picture {
 	private String url;
 	private BufferedImage img;
 	
+	public String getTopic() {
+		return topic;
+	}
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
 	// use image width and height
 	public Picture(String url_source) {
 		width = 0;
@@ -179,6 +186,25 @@ public class Picture {
 		    ImageIO.write(bi, fileType, outputfile);
 		} catch (IOException e) {
 		   
+		}
+	}
+	
+	public void addFrame() {
+		for(int i = 0; i < width; i++) {
+			this.setPixel(i, 0, 255);
+			this.setPixel(i, 1, 255);
+			this.setPixel(i, 2, 255);
+			this.setPixel(i, height-1, 255);
+			this.setPixel(i, height-2, 255);
+			this.setPixel(i, height-3, 255);
+		}
+		for(int j = 0; j < height; j++) {
+			this.setPixel(0, j, 255);
+			this.setPixel(1, j, 255);
+			this.setPixel(2, j, 255);
+			this.setPixel(width-1, j, 255);
+			this.setPixel(width-2, j, 255);
+			this.setPixel(width-3, j, 255);
 		}
 	}
 }
