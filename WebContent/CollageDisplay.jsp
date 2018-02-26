@@ -8,10 +8,23 @@
 		<title></title>
 		
 		<script>
+		  window.onload = function processForm() {
+		    var parameters = location.search.substring(1).split("&");
+		    var temp = parameters[0].split("=");
+		    var initTopic = unescape(temp[1]);
+		    //alert(initTopic); // what the user inputted
+		    document.getElementById("topic").innerHTML = initTopic;
+		  }
+		  //processForm();
+		</script>
+		
+		<script>
 			function changeTitle(element) {
 				document.getElementById('topic').innerHTML = element.value;
 			}
+		
 		</script>
+		
 	</head>
 	<body>
 		<div id="title">
