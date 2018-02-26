@@ -35,11 +35,11 @@
 		
 		</div>
 	
-		<form>
+		<form method="GET">
 			<div id="inputStuff">
 				<br />
 				<input type="text" id="inputBox" name="input" placeholder="Enter another topic">
-				<button type="button" id="inputButton" onclick="changeTitle(input)">Build Another Collage</button>
+				<button type="submit" id="inputButton" onclick="changeTitle(input)">Build Another Collage</button>
 				<button type="button" id="exportButton">Export Collage</button>
 			</div>
 		</form>

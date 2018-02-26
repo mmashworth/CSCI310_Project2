@@ -31,7 +31,8 @@
 <body>
 	<form action="CollageDisplay.jsp" method="GET">
 		<div id="inputStuff">
-			<input type="text" id="inputBox" name="input" placeholder="Enter topic" onkeydown="enterInput('CollageDisplay.jsp')">
+		<!-- onkeydown="enterInput('CollageDisplay.jsp')" -->
+			<input type="text" id="inputBox" name="input" placeholder="Enter topic">
 			<button type="submit" id="inputButton" onclick="openPage('CollageDisplay.jsp')"/>Build Collage</button>
 		</div>
 	</form>
