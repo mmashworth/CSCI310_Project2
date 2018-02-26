@@ -70,9 +70,12 @@ public class Test extends JPanel {
 			
 			*/
 		   
-		   Searching test = new Searching();
-		   List<String> nameList = test.searchQuery("dog");
-		   
+		  // Searching test = new Searching();
+		  // List<String> nameList = test.searchQuery("dog");
+			List<String> nameList = new ArrayList<String>();
+			for (int i = 0; i < 30; i++) {
+				nameList.add("https://res.cloudinary.com/demo/image/upload/sample.jpg");
+			}
 		   
 		  // List<Integer> angelList = new ArrayList<Integer>();
 		  // angelList.add(20);
@@ -91,6 +94,7 @@ public class Test extends JPanel {
 		   int width = 800;
 		   int height = 600;
 		   Picture newPict = Collage.make30Collage(width, height, nameList, angleList);
+		   newPict.writeImage("saved.png", "png");
 		   BufferedImage img3 = newPict.getImage(width, height);
 		   g.drawImage(img3, 0, 0,this);
 	   }
