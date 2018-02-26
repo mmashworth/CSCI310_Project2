@@ -46,16 +46,16 @@ public class Searching {
 	        	    HttpURLConnection.setFollowRedirects(false);
 	        	    huc.setRequestMethod("GET"); 
 	        	    huc.connect();
-	        	    System.out.println(huc.getResponseCode());
+//	        	    System.out.println(huc.getResponseCode());
 	        	    if(huc.getResponseCode() == 200 && searchResults.size()<30){
-	        	    	System.out.println(link);
+//	        	    	System.out.println(link);
 			            searchResults.add(link);
 	        	    }
 		        }
 		    }
 		    conn.disconnect();
 	    }
-	    System.out.println(searchResults.size());
+//	    System.out.println(searchResults.size());
 		return searchResults;	//searchResults is returned as the url to the picture of the image
 		
 								//NOTE: It is possible to get images of specific sizes! However, to give a working example,
