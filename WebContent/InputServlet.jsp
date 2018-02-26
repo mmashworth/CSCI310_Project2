@@ -3,7 +3,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
- 	<link rel="stylesheet" href="inputStyle.css">
+ 	<style type="text/css">
+ 	body {
+		background-color: #d3d3d3;
+	}
+
+	#inputBox {
+		border-color: #a9a9a9;
+	}
+
+	#inputStuff {
+		position: absolute;
+	
+	    width: 300px;
+	    height: 300px;
+	
+	    /* Center form on page horizontally & vertically */
+	    top: 50%;
+	    left: 50%;
+	    margin-top: -40px;
+	    margin-left: -60px;
+	}
+
+	#inputButton {
+		background-color: #a9a9a9;
+		color: white;
+	}
+</style>
 	<script type="text/j
 	avascript">
 		 function openPage(pageURL)
