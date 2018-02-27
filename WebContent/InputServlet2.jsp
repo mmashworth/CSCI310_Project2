@@ -43,8 +43,7 @@ function enterInput(pageURL) {
 	    var charCode = event.which || event.keyCode;
 	
 	    if ( charCode == '13' ) {
-	      // Enter pressed
-	      
+	      // Enter pressed    
 	      window.location.href = pageURL;
 	      return false;
 	    }

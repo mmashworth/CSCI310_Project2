@@ -16,16 +16,35 @@
 				document.getElementById('topic').innerHTML = element.value;
 			}
 		</script>
-		
 		<script>
-		/*
-			function swapImages(filename, topic) {
-				document.getElementById(filename).src = 'saved.png';
-				
-				document.getElementById('currentCollage').src =  filename;
-				document.getElementById('title').innerHTML = 'Collage for' + topic;
+			function swapImages() {
+				console.log('an image was clicked');
 			}
-		*/
+		</script>
+		<script>	
+			function swapImages(filename, topic) {
+				console.log('in swapImages function');
+				console.log('   ' + topic);
+				
+				var mainSource = document.getElementById('currentCollage').src;
+				console.log(mainSource);
+				var swapSource = document.getElementById(filename).src;
+				console.log(swapSource);
+				
+				//move current collage image to clicked image
+				document.getElementById(filename).src = mainSource;
+				//move clicked image into main collage space
+				document.getElementById('currentCollage').src =  swapSource;
+				
+				
+				var mainTopic = document.getElementById('currentCollage').alt;
+				var swapTopic = document.getElementById(filename).alt;
+				
+				document.getElementById('currentCollage').alt = swapTopic;
+				document.getElementById(filename).alt = mainTopic
+				//change title
+				document.getElementById('title').innerHTML = 'Collage for ' + swapTopic;
+			}	
 		</script>
 	</head>
 	<body>
@@ -43,7 +62,7 @@
 		
 		
 		<div id="collageSpace">
-			<img alt="collage2" src="saved.png" id="currentCollage">
+			<img alt="<%=currentCollage.getTopic()%>" src="saved.png" id="currentCollage">
 		</div>
 	
 	
@@ -70,9 +89,9 @@
 					 		String filename = "savedAgain" + Integer.toString(i) + ".png";
 							newPic.writeImage(fileName2, "png");
 					 		%>
-					 		<img alt="collage" src=<%= filename %> id=<%=filename%> 
+					 		<img alt=<%=newPic.getTopic()%> src=<%=filename%> id=<%=filename%> 
 					 			 style="float:left; width: 160px; height: 120px; margin: 0 5px;"
-					 			 onclick= "swapImages(<%=filename%>, <%=newPic.getTopic()%>)">
+					 			 onclick= 'swapImages("<%=filename%>", "<%=newPic.getTopic()%>", "<%=currentCollage.getTopic()%>")'>
 					 		<%
 						   }
 					}
