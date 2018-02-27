@@ -19,19 +19,20 @@
 	</head>
 	<body>
 	
-		<div id="title">
 		<%
 		 String fileName = application.getRealPath("/") + "saved.png";
 		 /* Picture currentCollage = (Picture)request.getParameter("collageImage"); */
 		 currentCollage.writeImage(fileName, "png");
 		 %>
+	
+		<div id="title">	 
 			Collage for <%= request.getSession().getAttribute("topic") %> <span id="topic"></span>
 		</div>
 		
 		
 		
 		<div id="collageSpace">
-			<img alt="collage2" src="saved.png">
+			<img alt="collage2" src="saved.png" id="currentCollage">
 		</div>
 	
 	
@@ -58,7 +59,9 @@
 					 		String filename = "savedAgain" + Integer.toString(i) + ".png";
 							newPic.writeImage(fileName2, "png");
 					 		%>
-					 		<img alt="collage" src=<%= filename %> style="float: left; width: 160px; height: 120px; margin: 0 5px;">
+					 		<img alt="collage" src=<%= filename %> style="float: left; width: 160px; height: 120px; margin: 0 5px;"
+					 			 onclick="document.getElementById('currentCollage').src='<%=filename%>';
+										  document.getElementById('title').innerHTML = 'Collage for X' ">
 					 	<%
 						   }
 					}
