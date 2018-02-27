@@ -200,8 +200,12 @@ public final class Collage {
 		// add each component picture to new picture
 		for (int n = 0; n < count; n++) {
 			int k = orderList[n];
+			System.out.println(k);
+			System.out.println(pictList.size());
+
 			int idx = k % pictList.size();
 			Picture pict = pictList.get(idx);
+
 	
 			int start_x = x_arr.get(k).intValue();
 			int start_y = y_arr.get(k).intValue();

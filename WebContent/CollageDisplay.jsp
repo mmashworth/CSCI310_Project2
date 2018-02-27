@@ -16,6 +16,17 @@
 				document.getElementById('topic').innerHTML = element.value;
 			}
 		</script>
+		
+		<script>
+		/*
+			function swapImages(filename, topic) {
+				document.getElementById(filename).src = 'saved.png';
+				
+				document.getElementById('currentCollage').src =  filename;
+				document.getElementById('title').innerHTML = 'Collage for' + topic;
+			}
+		*/
+		</script>
 	</head>
 	<body>
 	
@@ -59,10 +70,10 @@
 					 		String filename = "savedAgain" + Integer.toString(i) + ".png";
 							newPic.writeImage(fileName2, "png");
 					 		%>
-					 		<img alt="collage" src=<%= filename %> style="float: left; width: 160px; height: 120px; margin: 0 5px;"
-					 			 onclick="document.getElementById('currentCollage').src='<%=filename%>';
-										  document.getElementById('title').innerHTML = 'Collage for <%=newPic.getTopic()%>' ">
-					 	<%
+					 		<img alt="collage" src=<%= filename %> id=<%=filename%> 
+					 			 style="float:left; width: 160px; height: 120px; margin: 0 5px;"
+					 			 onclick= "swapImages(<%=filename%>, <%=newPic.getTopic()%>)">
+					 		<%
 						   }
 					}
 				
