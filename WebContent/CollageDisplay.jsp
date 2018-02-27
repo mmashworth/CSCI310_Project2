@@ -61,7 +61,7 @@
 					 		%>
 					 		<img alt="collage" src=<%= filename %> style="float: left; width: 160px; height: 120px; margin: 0 5px;"
 					 			 onclick="document.getElementById('currentCollage').src='<%=filename%>';
-										  document.getElementById('title').innerHTML = 'Collage for X' ">
+										  document.getElementById('title').innerHTML = 'Collage for <%=newPic.getTopic()%>' ">
 					 	<%
 						   }
 					}
