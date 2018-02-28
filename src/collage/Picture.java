@@ -207,4 +207,5 @@ public class Picture {
 			this.setPixel(width-3, j, 255);
 		}
 	}
+	
 }

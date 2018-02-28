@@ -46,6 +46,15 @@
 				document.getElementById('title').innerHTML = 'Collage for ' + swapTopic;
 			}	
 		</script>
+		
+		<script>
+			function exportCollage() {
+				var seconds = new Date().getTime() / 1000;
+				var xhttp= new XMLHttpRequest();
+				xhttp.open("GET", "ExportCollage.jsp?type=export&random="+seconds, false);
+				xhttp.send();
+			}
+		</script>
 	</head>
 	<body>
 	
@@ -72,7 +81,7 @@
 				<br />
 				<input type="text" id="inputBox" name="topic" placeholder="Enter another topic">
 				<input type="submit" value="Build Another Collage">
-				<button type="button" id="exportButton">Export Collage</button>
+				<button type="button" id="exportButton" onclick = "exportCollage()">Export Collage</button>
 			</div>
 		</form>
 		
