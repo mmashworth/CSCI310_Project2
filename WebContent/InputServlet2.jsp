@@ -21,7 +21,7 @@
 	    top: 50%;
 	    left: 50%;
 	    margin-top: -40px;
-	    margin-left: -85px;
+	    margin-left: -90px;
 	}
 	#inputButton {
 		background-color: #a9a9a9;
