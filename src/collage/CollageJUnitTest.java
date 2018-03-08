@@ -13,7 +13,7 @@ import org.junit.Test;
 import collage.Collage;
 import collage.Picture;
 
-public class CollageTest {
+public class CollageJUnitTest {
 	//test for getUrls()
 	@Test
 	public void testGetCatUrls() {
