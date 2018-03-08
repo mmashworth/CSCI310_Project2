@@ -69,4 +69,28 @@ public class CollageJUnitTest {
 		
 		assertTrue(inRange);
 	}
+	
+	// test for make30collage
+	@Test
+	public void testMake30CollageW() {
+		Collage collage = new Collage();
+		List<String> urls = collage.getUrls("dog");
+		List<Integer> testAngles = collage.getAngles();
+		Picture testPic = collage.make30Collage(800, 600, urls, testAngles);
+		
+		assertTrue(testPic.getWidth() == 800);
+		
+	}
+	
+	// test for make30collage
+		@Test
+		public void testMake30CollageH() {
+			Collage collage = new Collage();
+			List<String> urls = collage.getUrls("dog");
+			List<Integer> testAngles = collage.getAngles();
+			Picture testPic = collage.make30Collage(800, 600, urls, testAngles);
+			
+			assertTrue(testPic.getHeight() == 600);
+			
+		}
 }

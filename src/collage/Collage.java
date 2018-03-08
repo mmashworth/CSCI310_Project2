@@ -36,105 +36,107 @@ public final class Collage {
 	}
 	
 	
-	// This code will copy part of one picture to another picture 
-	public static Picture makeCollage (Picture pict, Picture pict2, Picture pict3)
-	{
-		int xStart, xEnd;
-		int yStart, yEnd;
-		   
-		/* xStart = 250;
-		yStart = 150;
-		xEnd = 400;
-		yEnd = 300; */
-
-		// declare variables for the loop
-		int xIndex, xIndex1, xIndex2;
-		int yIndex, yIndex1, yIndex2;
-		int pixel1, pixel2;
-		    
-		// get width and height of picture
-		int width = pict.getWidth();
-		int height = pict.getHeight();
-		
-		// create a bit "empty canvas" for new picture
-		int width2 = width + pict2.getWidth() + pict3.getWidth();
-		int height2 = height + pict2.getHeight();
-		Picture pictNew = new Picture (width2, height2);
-
-		// create a for loop to access/manipulate each pixel
-		// copy pict to pictNew
-		for ( xIndex = 0 ; xIndex < width ; xIndex = xIndex + 1 ) {
-		    for ( yIndex = 0 ; yIndex < height ; yIndex = yIndex + 1 ) {
-		         // get the pixel from the original picture base on X,Y position 
-		         xIndex1 = xIndex;
-		         yIndex1 = yIndex;
-		         pixel1 = pict.getPixel (xIndex1, yIndex1);
-		         
-		         pictNew.setPixel(xIndex, yIndex, pixel1);
-		        }
-		   }
-		   
-		   int widthA = pict2.getWidth();
-		   int heightA = pict2.getHeight();
-		   
-		   // create a for loop to access/manipulate each pixel for the lower image
-		   // i.e., append pict2 to be below pict in pictNew
-		   for ( xIndex = 0 ; xIndex < widthA ; xIndex = xIndex + 1 )
-		   {
-		      for ( yIndex = 0 ; yIndex < heightA ; yIndex = yIndex + 1 )
-		        {
-		         // get the pixel from the original picture base on X,Y position 
-		         xIndex1 = xIndex;
-		         yIndex1 = yIndex;
-		         pixel1 = pict2.getPixel (xIndex1, yIndex1);
-		      
-		         // determine the corresponding pixel in the new picture
-		         xIndex2 = xIndex ;
-		         yIndex2 = yIndex + height;
-		         pictNew.setPixel (xIndex2, yIndex2, pixel1);
-		        }
-		   }
-		   
-		   int widthB = pict3.getWidth();
-		   int heightB = pict3.getHeight();
-		   // create a for loop to access/manipulate each pixel for the lower image
-		   // i.e., add pict3 to the right
-		   for ( xIndex = 0 ; xIndex < widthB ; xIndex = xIndex + 1 )
-		   {
-		      for ( yIndex = 0 ; yIndex < heightB ; yIndex = yIndex + 1 )
-		        {
-		         // get the pixel from the original picture base on X,Y position 
-		         xIndex1 = xIndex;
-		         yIndex1 = yIndex;
-		         pixel1 = pict3.getPixel (xIndex1, yIndex1);
-		      
-		         // determine the corresponding pixel in the new picture
-		         xIndex2 = xIndex + widthA;
-		         yIndex2 = yIndex + height;
-		         pictNew.setPixel (xIndex2, yIndex2, pixel1);
-		        }
-		   }
-		   
-		   // create a for loop to access/manipulate each pixel for the lower image
-		   // add pict2 to the right once more	   
-		   for ( xIndex = 0 ; xIndex < widthA ; xIndex = xIndex + 1 )
-		   {
-		      for ( yIndex = 0 ; yIndex < heightA ; yIndex = yIndex + 1 )
-		        {
-		         // get the pixel from the original picture base on X,Y position 
-		         xIndex1 = xIndex;
-		         yIndex1 = yIndex;
-		         pixel1 = pict2.getPixel(xIndex1, yIndex1);
-		      
-		         // determine the corresponding pixel in the new picture
-		         xIndex2 = xIndex + widthA + widthB;
-		         yIndex2 = yIndex + height;
-		         pictNew.setPixel (xIndex2, yIndex2, pixel1);  
-		        }
-		   }
-		   
-		return pictNew;
-	}
+	
+//	// This code will copy part of one picture to another picture 
+//	public static Picture makeCollage (Picture pict, Picture pict2, Picture pict3)
+//	{
+//		int xStart, xEnd;
+//		int yStart, yEnd;
+//		   
+//		/* xStart = 250;
+//		yStart = 150;
+//		xEnd = 400;
+//		yEnd = 300; */
+//
+//		// declare variables for the loop
+//		int xIndex, xIndex1, xIndex2;
+//		int yIndex, yIndex1, yIndex2;
+//		int pixel1, pixel2;
+//		    
+//		// get width and height of picture
+//		int width = pict.getWidth();
+//		int height = pict.getHeight();
+//		
+//		// create a bit "empty canvas" for new picture
+//		int width2 = width + pict2.getWidth() + pict3.getWidth();
+//		int height2 = height + pict2.getHeight();
+//		Picture pictNew = new Picture (width2, height2);
+//
+//		// create a for loop to access/manipulate each pixel
+//		// copy pict to pictNew
+//		for ( xIndex = 0 ; xIndex < width ; xIndex = xIndex + 1 ) {
+//		    for ( yIndex = 0 ; yIndex < height ; yIndex = yIndex + 1 ) {
+//		         // get the pixel from the original picture base on X,Y position 
+//		         xIndex1 = xIndex;
+//		         yIndex1 = yIndex;
+//		         pixel1 = pict.getPixel (xIndex1, yIndex1);
+//		         
+//		         pictNew.setPixel(xIndex, yIndex, pixel1);
+//		        }
+//		   }
+//		   
+//		   int widthA = pict2.getWidth();
+//		   int heightA = pict2.getHeight();
+//		   
+//		   // create a for loop to access/manipulate each pixel for the lower image
+//		   // i.e., append pict2 to be below pict in pictNew
+//		   for ( xIndex = 0 ; xIndex < widthA ; xIndex = xIndex + 1 )
+//		   {
+//		      for ( yIndex = 0 ; yIndex < heightA ; yIndex = yIndex + 1 )
+//		        {
+//		         // get the pixel from the original picture base on X,Y position 
+//		         xIndex1 = xIndex;
+//		         yIndex1 = yIndex;
+//		         pixel1 = pict2.getPixel (xIndex1, yIndex1);
+//		      
+//		         // determine the corresponding pixel in the new picture
+//		         xIndex2 = xIndex ;
+//		         yIndex2 = yIndex + height;
+//		         pictNew.setPixel (xIndex2, yIndex2, pixel1);
+//		        }
+//		   }
+//		   
+//		   int widthB = pict3.getWidth();
+//		   int heightB = pict3.getHeight();
+//		   // create a for loop to access/manipulate each pixel for the lower image
+//		   // i.e., add pict3 to the right
+//		   for ( xIndex = 0 ; xIndex < widthB ; xIndex = xIndex + 1 )
+//		   {
+//		      for ( yIndex = 0 ; yIndex < heightB ; yIndex = yIndex + 1 )
+//		        {
+//		         // get the pixel from the original picture base on X,Y position 
+//		         xIndex1 = xIndex;
+//		         yIndex1 = yIndex;
+//		         pixel1 = pict3.getPixel (xIndex1, yIndex1);
+//		      
+//		         // determine the corresponding pixel in the new picture
+//		         xIndex2 = xIndex + widthA;
+//		         yIndex2 = yIndex + height;
+//		         pictNew.setPixel (xIndex2, yIndex2, pixel1);
+//		        }
+//		   }
+//		   
+//		   // create a for loop to access/manipulate each pixel for the lower image
+//		   // add pict2 to the right once more	   
+//		   for ( xIndex = 0 ; xIndex < widthA ; xIndex = xIndex + 1 )
+//		   {
+//		      for ( yIndex = 0 ; yIndex < heightA ; yIndex = yIndex + 1 )
+//		        {
+//		         // get the pixel from the original picture base on X,Y position 
+//		         xIndex1 = xIndex;
+//		         yIndex1 = yIndex;
+//		         pixel1 = pict2.getPixel(xIndex1, yIndex1);
+//		      
+//		         // determine the corresponding pixel in the new picture
+//		         xIndex2 = xIndex + widthA + widthB;
+//		         yIndex2 = yIndex + height;
+//		         pictNew.setPixel (xIndex2, yIndex2, pixel1);  
+//		        }
+//		   }
+//		   
+//		return pictNew;
+//	} 
+	
 	
 	public static Picture make30Collage (int new_width, int new_height, List<String> nameList, List<Integer> angelList) {
 		Picture pictNew = new Picture (new_width, new_height);
