@@ -27,13 +27,6 @@ public class CollageJUnitTest {
 		assertTrue(urls.size() == 30);
 	}
 
-	//test for getUrls()
-	@Test
-	public void testGetDogUrls() {
-		Collage collage = new Collage();
-		List<String> urls = collage.getUrls("dog");
-		assertTrue(urls.size() == 30);
-	}
 	
 	//test for getUrls()
 	@Test

@@ -92,44 +92,44 @@ public class Searching {
 								//the images currently returned will be of various sizes.
 	}
 	
-	public List<String> fastSearch(String query, int imagesNeeded) throws IOException{
-		List<String> searchResults = new ArrayList<>();
-	    String qry=query;
-	    qry = qry.replace(" ","\\");
-	    Boolean resultCheck = false;
-	    
-	    while(searchResults.size() < imagesNeeded){
-	    	int imagesToGrab = java.lang.Math.min(10, imagesNeeded-searchResults.size());
-	    	URL url = new URL(
-		            "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+cx+"&q="+ qry + "&alt=json&excludeTerms=gif|svg&searchType=image&num="+imagesToGrab+"&start="+searchCount);
-		    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		    conn.setRequestMethod("GET");
-		    conn.setRequestProperty("Accept", "application/json");
-		    
-		    BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-		    String output;
-		    while ((output = br.readLine()) != null) {
-		    	
-		    	if(output.contains("\"totalResults\": \"") && resultCheck == false){
-		    		String haha=output.substring(output.indexOf("\"totalResults\": \"")+("\"totalResults\": \"").length(), output.indexOf("\","));
-				    if(Long.parseLong(haha) < 30){
-				    	throw new IOException("Insufficient Images");
-				    }else{
-				    	resultCheck = true;
-				    }
-		    	}
-		    	
-		    	
-		        if(output.contains("\"link\": \"")){
-		            String link=output.substring(output.indexOf("\"link\": \"")+("\"link\": \"").length(), output.indexOf("\","));
-		            searchResults.add(link);
-		            searchCount++;
-		        }
-		    }
-		    conn.disconnect();
-	    }
-//	    System.out.println(searchResults.size());
-//	    System.out.println(searchCount);
-	    return searchResults;
-	} 
+//	public List<String> fastSearch(String query, int imagesNeeded) throws IOException{
+//		List<String> searchResults = new ArrayList<>();
+//	    String qry=query;
+//	    qry = qry.replace(" ","\\");
+//	    Boolean resultCheck = false;
+//	    
+//	    while(searchResults.size() < imagesNeeded){
+//	    	int imagesToGrab = java.lang.Math.min(10, imagesNeeded-searchResults.size());
+//	    	URL url = new URL(
+//		            "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+cx+"&q="+ qry + "&alt=json&excludeTerms=gif|svg&searchType=image&num="+imagesToGrab+"&start="+searchCount);
+//		    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//		    conn.setRequestMethod("GET");
+//		    conn.setRequestProperty("Accept", "application/json");
+//		    
+//		    BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+//		    String output;
+//		    while ((output = br.readLine()) != null) {
+//		    	
+//		    	if(output.contains("\"totalResults\": \"") && resultCheck == false){
+//		    		String haha=output.substring(output.indexOf("\"totalResults\": \"")+("\"totalResults\": \"").length(), output.indexOf("\","));
+//				    if(Long.parseLong(haha) < 30){
+//				    	throw new IOException("Insufficient Images");
+//				    }else{
+//				    	resultCheck = true;
+//				    }
+//		    	}
+//		    	
+//		    	
+//		        if(output.contains("\"link\": \"")){
+//		            String link=output.substring(output.indexOf("\"link\": \"")+("\"link\": \"").length(), output.indexOf("\","));
+//		            searchResults.add(link);
+//		            searchCount++;
+//		        }
+//		    }
+//		    conn.disconnect();
+//	    }
+////	    System.out.println(searchResults.size());
+////	    System.out.println(searchCount);
+//	    return searchResults;
+//	} 
 }
