@@ -45,6 +45,20 @@ public class SearchingJUnit {
 	}
 	
 	@Test
+	// test for searchQuery() in Searching class - insufficient number of images found
+	public void testSearchQueryInsufficient() {
+		Searching searchingTest = new Searching();
+		boolean thrown = false;
+		try {
+			List<String> urls = searchingTest.searchQuery("asdfghjkjhgfdsdf");
+		} catch (IOException e) {
+			thrown = true;
+			e.printStackTrace();
+		}
+		assertTrue(thrown);
+	}
+	
+	@Test
 	// test for fastSearch() in Searching class
 	public void testFastSearchDog() {
 		Searching searchingTest = new Searching();
@@ -78,6 +92,20 @@ public class SearchingJUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	// test for fastSearch() in Searching class - insufficient number of images found
+	public void testFastSearchInsufficient() {
+		Searching searchingTest = new Searching();
+		boolean thrown = false;
+		try {
+			List<String> urls = searchingTest.fastSearch("asdfghjkjhgfdsdf",30);
+		} catch (IOException e) {
+			thrown = true;
+			e.printStackTrace();
+		}
+		assertTrue(thrown);
 	}
 	
 
