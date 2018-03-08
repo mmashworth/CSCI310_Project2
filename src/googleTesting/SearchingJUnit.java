@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class SearchingJUnit {
 
-	/*@Test
+	@Test
 	// test for searchQuery() in Searching class
 	public void testSearchQueryDog() {
 		Searching searchingTest = new Searching();
@@ -42,7 +42,7 @@ public class SearchingJUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	@Test
 	// test for searchQuery() in Searching class - insufficient number of images found
@@ -59,7 +59,7 @@ public class SearchingJUnit {
 		//assertTrue(thrown);
 	}
 	
-	/*@Test
+	@Test
 	// test for fastSearch() in Searching class
 	public void testFastSearchDog() {
 		Searching searchingTest = new Searching();
@@ -69,9 +69,9 @@ public class SearchingJUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	// test for fastSearch() in Searching class
 	public void testFastSearchTree() {
 		Searching searchingTest = new Searching();
@@ -81,9 +81,9 @@ public class SearchingJUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	// test for fastSearch() in Searching class
 	public void testFastSearchHappyDog() {
 		Searching searchingTest = new Searching();
@@ -93,7 +93,7 @@ public class SearchingJUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	@Test
 	// test for fastSearch() in Searching class - insufficient number of images found
