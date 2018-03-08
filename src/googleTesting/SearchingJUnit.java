@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class SearchingJUnit {
 
-	@Test
+	/*@Test
 	// test for searchQuery() in Searching class
 	public void testSearchQueryDog() {
 		Searching searchingTest = new Searching();
@@ -42,23 +42,24 @@ public class SearchingJUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	@Test
 	// test for searchQuery() in Searching class - insufficient number of images found
 	public void testSearchQueryInsufficient() {
 		Searching searchingTest = new Searching();
-		boolean thrown = false;
+		//boolean thrown = false;
 		try {
-			List<String> urls = searchingTest.searchQuery("asdfghjkjhgfdsdf");
+			List<String> urls = searchingTest.searchQuery("asdadadgafdgadfgafgafgfghjkjhgfdsdf");
+			assertTrue(urls.size() == 30);
 		} catch (IOException e) {
-			thrown = true;
+			//thrown = true;
 			e.printStackTrace();
 		}
-		assertTrue(thrown);
+		//assertTrue(thrown);
 	}
 	
-	@Test
+	/*@Test
 	// test for fastSearch() in Searching class
 	public void testFastSearchDog() {
 		Searching searchingTest = new Searching();
@@ -68,9 +69,9 @@ public class SearchingJUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	// test for fastSearch() in Searching class
 	public void testFastSearchTree() {
 		Searching searchingTest = new Searching();
@@ -80,9 +81,9 @@ public class SearchingJUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	// test for fastSearch() in Searching class
 	public void testFastSearchHappyDog() {
 		Searching searchingTest = new Searching();
@@ -92,20 +93,20 @@ public class SearchingJUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	@Test
 	// test for fastSearch() in Searching class - insufficient number of images found
 	public void testFastSearchInsufficient() {
 		Searching searchingTest = new Searching();
-		boolean thrown = false;
+		//boolean thrown = false;
 		try {
-			List<String> urls = searchingTest.fastSearch("asdfghjkjhgfdsdf",30);
+			List<String> urls = searchingTest.fastSearch("asdfghjkjhgfdfhadfhsjtjafhadasddgafgdsdf",30);
+			assertTrue(urls.size() == 30);
 		} catch (IOException e) {
-			thrown = true;
+			//thrown = true;
 			e.printStackTrace();
 		}
-		assertTrue(thrown);
 	}
 	
 
