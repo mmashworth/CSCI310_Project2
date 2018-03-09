@@ -30,20 +30,20 @@ public class Picture {
 		this.topic = topic;
 	}
 	// use image width and height
-	public Picture(String url_source) {
-		width = 0;
-		height = 0;
-		
-		this.url = url_source;
-		try {
-			URL image_url = new URL(url);
-			img = ImageIO.read(image_url);
-			height = img.getHeight();
-			width = img.getWidth();
-		} catch (IOException e) {
-			
-		}
-	}
+//	public Picture(String url_source) {
+//		width = 0;
+//		height = 0;
+//		
+//		this.url = url_source;
+//		try {
+//			URL image_url = new URL(url);
+//			img = ImageIO.read(image_url);
+//			height = img.getHeight();
+//			width = img.getWidth();
+//		} catch (IOException e) {
+//			
+//		}
+//	}
 	
 	// with specified width and height
 	public Picture(int w, int h, String url_source) {
