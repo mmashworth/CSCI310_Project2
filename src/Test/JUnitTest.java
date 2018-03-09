@@ -1,4 +1,4 @@
-package collage;
+package Test;
 
 import static org.junit.Assert.*;
 
@@ -6,13 +6,93 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import org.junit.Test;
 
-public class PictureJUnitTest {
+import collage.Collage;
+import collage.Picture;
+import collage.User.UserClass;
+//import googleTesting.List;
+import googleTesting.Searching;
 
+public class JUnitTest {
+	/**
+	 * Tests for Collage.java
+	 */
+	//test for getUrls()
+	@Test
+	public void testGetCatUrls() {
+		Collage collage = new Collage();
+		List<String> urls = collage.getUrls("cat");
+		assertTrue(urls.size() == 30);
+	}
+
+	
+	//test for getUrls()
+	@Test
+	public void testGetHappyDogUrls() {
+		Collage collage = new Collage();
+		List<String> urls = collage.getUrls("happy dog");
+		assertTrue(urls.size() == 30);
+	} 
+	
+	//test for getAngles
+	@Test
+	// tests getAngles returns 30 angles
+	public void testGetAnglesSize() {
+		Collage collage = new Collage();
+		List<Integer> testAngles = collage.getAngles();
+		assertTrue(testAngles.size() == 30);
+		
+
+	}
+	
+	//test for getAngles
+	@Test
+	// gets getAngles returns random angles between -45 and 45
+	public void testGetAnglesRange() {
+		Collage collage = new Collage();
+		List<Integer> testAngles = collage.getAngles();
+		boolean inRange = true;
+		for (int i = 0; i < testAngles.size(); i++) {
+			if (testAngles.get(i) < -45 || testAngles.get(i) > 45) {
+				inRange = false;
+			}
+		}
+		
+		assertTrue(inRange);
+	}
+	
+	// test for make30collage
+	@Test
+	public void testMake30CollageW() {
+		Collage collage = new Collage();
+		List<String> urls = collage.getUrls("dog");
+		List<Integer> testAngles = collage.getAngles();
+		Picture testPic = collage.make30Collage(800, 600, urls, testAngles);
+		
+		assertTrue(testPic.getWidth() == 800);
+		
+	}
+	
+	// test for make30collage
+	@Test
+	public void testMake30CollageH() {
+		Collage collage = new Collage();
+		List<String> urls = collage.getUrls("dog");
+		List<Integer> testAngles = collage.getAngles();
+		Picture testPic = collage.make30Collage(800, 600, urls, testAngles);
+		
+		assertTrue(testPic.getHeight() == 600);
+		
+	}
+
+	/**
+	 * Tests for Picture.java
+	 */
 	@Test
 	//test setTopic() and getTopic() in Picture class
 	public void testSetTopicAndGetTopic() {
@@ -152,4 +232,79 @@ public class PictureJUnitTest {
 		File shouldExist = new File("test_image");
 	    assertTrue(shouldExist.exists());
 	}
+	
+	/**
+	 * Tests for User.java
+	 */
+	@Test
+	public void testPrevCollagesAfterSearches() {
+		Picture newSearch = new Picture(2,2);
+		UserClass.setCurrentCollage(newSearch);
+		UserClass.numPreviousSearches++;
+		assertTrue(UserClass.getNumPreviousSearches() == 0);
+		assertTrue(UserClass.getCollages().size() == 0);
+		Picture newSearch2 = new Picture(2,2);
+		UserClass.addPreviousCollage();
+		UserClass.numPreviousSearches++;
+		assertTrue(UserClass.getNumPreviousSearches() == 1);
+		UserClass.setCurrentCollage(newSearch2);
+		assertTrue(UserClass.getCollages().size() == 1);
+		assertTrue(UserClass.currentCollage == newSearch2);
+		
+	}
+	
+	/**
+	 * Tests for Searching.java
+	 */
+	@Test
+	// test for searchQuery() in Searching class
+	public void testSearchQueryDog() {
+		Searching searchingTest = new Searching();
+		try {
+			List<String> urls = searchingTest.searchQuery("dog");
+			assertTrue(urls.size() == 30);
+		} catch (IOException e) {
+			//e.printStackTrace();
+		}
+	}
+	
+	@Test
+	// test for searchQuery() in Searching class
+	public void testSearchQueryTree() {
+		Searching searchingTest = new Searching();
+		try {
+			List<String> urls = searchingTest.searchQuery("tree");
+			assertTrue(urls.size() == 30);
+		} catch (IOException e) {
+			//e.printStackTrace();
+		}
+	}
+	
+	@Test
+	// test for searchQuery() in Searching class
+	public void testSearchQueryHappyDog() {
+		Searching searchingTest = new Searching();
+		try {
+			List<String> urls = searchingTest.searchQuery("happy dog");
+			assertTrue(urls.size() == 30);
+		} catch (IOException e) {
+			//e.printStackTrace();
+		}
+	}
+	
+	@Test
+	// test for searchQuery() in Searching class
+	public void testSearchQueryInsufficient() {
+		Searching searchingTest = new Searching();
+		boolean isCatched = false;
+		try {
+			List<String> urls = searchingTest.searchQuery("reuiwdjweioopajwiladnwa");
+			//assertTrue(urls.size() == 30);
+		} catch (IOException e) {
+			//e.printStackTrace();
+			isCatched = true;
+		}
+		assertTrue(isCatched);
+	}
+	
 }
