@@ -58,7 +58,8 @@ public class BuildCollage extends HttpServlet {
 		request.getSession().setAttribute("collageImage", collageImage);
 		request.getSession().setAttribute("topic", topic);
 		request.getSession().setAttribute("history", history);
-		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/CollageDisplay.jsp");
+		//RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/CollageDisplay.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("/CollageDisplay.jsp");
 		dispatch.forward(request, response);
 	}
 
