@@ -24,7 +24,7 @@ public class Searching {
 	private int searchCount;		//this is used for fastSearch
 	
 	public Searching(){
-	    key="AIzaSyCWetpTmnU8opFj_d79ClVzzBzr49KJqvc";
+	    key="AIzaSyAJQX6j4gUuScG4Nj9h8jVVuNllgBPM18o";
 	    cx="016372075374369882146:uqrovp3x_6s";				//This is a hardcoded value-- it is the search engine key
 	    searchCount = 1;
 	}

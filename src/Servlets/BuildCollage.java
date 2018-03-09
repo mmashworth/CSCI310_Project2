@@ -39,29 +39,25 @@ public class BuildCollage extends HttpServlet {
 		response.setContentType("text/html"); //can do text/json, in servlets usually will be text/html
 		Collage newCollage = new Collage();
 		List<String> urls = newCollage.getUrls(topic);
-		for (int i=0; i < urls.size(); i++) {
-			System.out.println(urls.get(i));
-		}
+//		for (int i=0; i < urls.size(); i++) {
+//			System.out.println(urls.get(i));
+//		}
 		Picture collageImage = Collage.make30Collage(800, 600, urls, newCollage.getAngles());
-		//String imageName = "image.png";
-		//String fileName = application.getRealPath("/") + "image.png";
-		//collageImage.writeImage(imageName, "png"); //write image to a file
-		
+
 		UserClass.numPreviousSearches++;
+		
 		if (UserClass.getNumPreviousSearches() != 0) {
 			UserClass.addPreviousCollage(); //add old collage to list of historical collages
 		}
+		
 		UserClass.setCurrentCollage(collageImage); //update current collage to the new search
 		collageImage.setTopic(topic);
 		UserClass.setCurrentCollage(collageImage); //update current collage to the new search
 		List<Picture> history = UserClass.getCollages();
 		System.out.println("history size: " + history.size());
-		//UserClass.getCollages();
 		request.getSession().setAttribute("collageImage", collageImage);
 		request.getSession().setAttribute("topic", topic);
 		request.getSession().setAttribute("history", history);
-		//request.getSession().setAttribute("allCollages", UserClass.getCollages());
-		//request.getSession().setAttribute("AllCollages", User.getCollages());
 		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/CollageDisplay.jsp");
 		dispatch.forward(request, response);
 	}
