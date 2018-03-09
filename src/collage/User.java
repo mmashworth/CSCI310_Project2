@@ -11,10 +11,10 @@ public class User {
 		public static List<Picture> getCollages(){
 			return previousCollages;
 		}
-		public static void addCollage(Picture newCollage){
-			previousCollages.add(newCollage);
-			//collages.add(newCollage.writeImage(fileName, "png"));
-		}
+//		public static void addCollage(Picture newCollage){
+//			previousCollages.add(newCollage);
+//			//collages.add(newCollage.writeImage(fileName, "png"));
+//		}
 		public static void setCurrentCollage(Picture currCollage) {
 			currentCollage = currCollage;
 		}
