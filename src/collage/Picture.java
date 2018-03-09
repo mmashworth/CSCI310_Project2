@@ -30,20 +30,20 @@ public class Picture {
 		this.topic = topic;
 	}
 	// use image width and height
-//	public Picture(String url_source) {
-//		width = 0;
-//		height = 0;
-//		
-//		this.url = url_source;
-//		try {
-//			URL image_url = new URL(url);
-//			img = ImageIO.read(image_url);
-//			height = img.getHeight();
-//			width = img.getWidth();
-//		} catch (IOException e) {
-//			
-//		}
-//	}
+	public Picture(String url_source) {
+		width = 0;
+		height = 0;
+		
+		this.url = url_source;
+		try {
+			URL image_url = new URL(url);
+			img = ImageIO.read(image_url);
+			height = img.getHeight();
+			width = img.getWidth();
+		} catch (IOException e) {
+			
+		}
+	}
 	
 	// with specified width and height
 	public Picture(int w, int h, String url_source) {
@@ -98,7 +98,8 @@ public class Picture {
 	}
 	
 	public BufferedImage getImage() {
-		if ( setWH && width > 0 && height > 0 )
+		//if ( setWH && width > 0 && height > 0 )
+		if ( setWH )
 			return resize(img, width, height);
 		return img;
 	}
@@ -152,8 +153,8 @@ public class Picture {
         				int pos_x = i - start_x;
         				int pos_y = j - start_y;
         				int rgb = 0;
-        				if ( pos_x >= 0 && pos_x < width &&
-        						pos_y >= 0 && pos_y < height )
+//        				if ( pos_x >= 0 && pos_x < width &&
+//        						pos_y >= 0 && pos_y < height )
         					rgb = img.getRGB(i - start_x, j - start_y);
         				img2.setRGB(i, j, rgb);
         			}
