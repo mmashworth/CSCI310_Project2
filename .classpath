@@ -13,5 +13,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/Users/Rachel/Downloads/mockito-all-1.10.19.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
