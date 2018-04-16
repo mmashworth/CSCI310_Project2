@@ -34,6 +34,7 @@ public class BuildCollage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("----------In build collage servlet-----------");
 		String topic = request.getParameter("topic");
 		System.out.println("topic= " + topic);
 		response.setContentType("text/html"); //can do text/json, in servlets usually will be text/html
@@ -48,7 +49,6 @@ public class BuildCollage extends HttpServlet {
 		String filter = request.getParameter("filter");
 		
 		Picture collageImage = Collage.make30Collage(width, height, urls, newCollage.getAngles());
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		collageImage.applyFilter(filter);
 
 		UserClass.numPreviousSearches++;
