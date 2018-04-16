@@ -22,7 +22,7 @@
 	    left: 50%;
 	    margin-top: -40px;
 	    margin-left: -90px;
-	}
+	} 
 	#inputButton {
 		background-color: #a9a9a9;
 		color: white;
