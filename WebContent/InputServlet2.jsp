@@ -60,9 +60,6 @@ function enterInput(pageURL) {
 	<form method = "GET" action="BuildCollage" >
 		<div id="inputStuff">
 			<input type="text" name="topic" placeholder="Enter topic" onkeydown="enterInput('CollageDisplay.jsp')">
-			<input type="text" name="shape" placeholder="Enter shape"><br>
-			Collage Options <select name = "options"></select><br>
-  			<button name = "save"> Save to History</button></br>
 			<input type="submit" value="Build Collage">
 		</div>
 	</form>
