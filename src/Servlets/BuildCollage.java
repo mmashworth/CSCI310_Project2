@@ -42,7 +42,11 @@ public class BuildCollage extends HttpServlet {
 //		for (int i=0; i < urls.size(); i++) {
 //			System.out.println(urls.get(i));
 //		}
-		Picture collageImage = Collage.make30Collage(800, 600, urls, newCollage.getAngles());
+		
+		int width = Integer.parseInt( request.getParameter("width") );
+		int height = Integer.parseInt( request.getParameter("height") );
+		
+		Picture collageImage = Collage.make30Collage(width, height, urls, newCollage.getAngles());
 
 		UserClass.numPreviousSearches++;
 		
