@@ -26,7 +26,7 @@ public class Picture {
 	private BufferedImage img;
 	
 	// use image width and height
-	public Picture(String filter, String url_source) {
+	public Picture(String url_source) {
 		width = 0;
 		height = 0;
 		
