@@ -1,5 +1,7 @@
 package collage;
 
+import java.awt.image.ColorConvertOp;
+import java.awt.color.ColorSpace;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
@@ -23,14 +25,8 @@ public class Picture {
 	private String url;
 	private BufferedImage img;
 	
-	public String getTopic() {
-		return topic;
-	}
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
 	// use image width and height
-	public Picture(String url_source) {
+	public Picture(String filter, String url_source) {
 		width = 0;
 		height = 0;
 		
@@ -43,7 +39,10 @@ public class Picture {
 		} catch (IOException e) {
 			
 		}
+				
 	}
+	
+	
 	
 	// with specified width and height
 	public Picture(int w, int h, String url_source) {
@@ -62,11 +61,37 @@ public class Picture {
 		}
 	}
 	
+	
 	public Picture(int w, int h) {
 		width = w;
 		height = h;
 		setWH = true;
-		img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);	
+	}
+	
+	
+	
+	public void applyFilter(String filter) {
+		System.out.println("FILTERING THE COLLAGE");
+		ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+		op.filter(img, img);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getTopic() {
+		return topic;
+	}
+	public void setTopic(String topic) {
+		this.topic = topic;
 	}
 	
 	public int getWidth() {

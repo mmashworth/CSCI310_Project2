@@ -45,8 +45,11 @@ public class BuildCollage extends HttpServlet {
 		
 		int width = Integer.parseInt( request.getParameter("width") );
 		int height = Integer.parseInt( request.getParameter("height") );
+		String filter = request.getParameter("filter");
 		
 		Picture collageImage = Collage.make30Collage(width, height, urls, newCollage.getAngles());
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		collageImage.applyFilter(filter);
 
 		UserClass.numPreviousSearches++;
 		
@@ -58,6 +61,7 @@ public class BuildCollage extends HttpServlet {
 		collageImage.setTopic(topic);
 		UserClass.setCurrentCollage(collageImage); //update current collage to the new search
 		List<Picture> history = UserClass.getCollages();
+		System.out.println("HERE?????");
 		System.out.println("history size: " + history.size());
 		request.getSession().setAttribute("collageImage", collageImage);
 		request.getSession().setAttribute("topic", topic);

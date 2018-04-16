@@ -202,8 +202,8 @@ public final class Collage {
 		// add each component picture to new picture
 		for (int n = 0; n < count; n++) {
 			int k = orderList[n];
-			System.out.println(k);
-			System.out.println(pictList.size());
+			//System.out.println(k);
+			//System.out.println(pictList.size());
 
 			int idx = k % pictList.size();
 			Picture pict = pictList.get(idx);
@@ -214,8 +214,8 @@ public final class Collage {
 			start_x -= pict.getXPos();
 			start_y -= pict.getYPos();
 			
-			System.out.println("start " + n + ":" + start_x + ", " + start_y);
-			System.out.println(pict.getXPos() + ", " + pict.getYPos());
+			//System.out.println("start " + n + ":" + start_x + ", " + start_y);
+			//System.out.println(pict.getXPos() + ", " + pict.getYPos());
 			
 			for (int i = 0; i < pict.getWidth(); i++) {
 				int x = i + start_x;

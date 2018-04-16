@@ -67,6 +67,14 @@ function enterInput(pageURL) {
 			Collage Width <input type="range" min="100" max="1000" step="50" name="width" value="800"> <br>
 			Collage Height <input type="range" min="100" max="1000" step="50" name="height" value="600"> <br>
 			
+			<select name="filter">
+				<option value="nofilter">No filter</option>
+    				<option value="bw">Black and white</option>
+    				<option value="gs">Grayscale</option>
+    				<option value="sepia">Sepia</option>
+  			</select> <br>
+			
+			
 			<input type="submit" value="Build Collage">
 		</div>
 	</form>

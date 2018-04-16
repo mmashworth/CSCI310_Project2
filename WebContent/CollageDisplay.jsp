@@ -57,7 +57,7 @@
 		</script>
 	</head>
 	<body>
-		<-- This is where we are saving the pictures that we will use in the collage -->
+		<!-- This is where we are saving the pictures that we will use in the collage -->
 		<%
 		 String fileName = application.getRealPath("/") + "saved.png";
 		 /* Picture currentCollage = (Picture)request.getParameter("collageImage"); */
@@ -75,7 +75,7 @@
 		</div>
 	
 	
-		<-- This is the get form where we will allow the user to export collages-->
+		<!-- This is the get form where we will allow the user to export collages-->
 		<form method = "GET" action="BuildCollage" >
 			<div id="inputStuff">
 				<br />
@@ -87,7 +87,7 @@
 		
 		
 		
-		<-- Set up for previous collages that the user can both look at and click on -->
+		<!-- Set up for previous collages that the user can both look at and click on -->
 		<div id="previousCollages" style="overflow: auto; width: 730px; height: 120px;">
 			<div id="innerPrevCollages" style="width: 5000px;">
 				<% 
