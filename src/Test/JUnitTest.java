@@ -112,6 +112,70 @@ public class JUnitTest extends Mockito{
 	/**
 	 * Tests for Picture.java
 	 */
+	
+	@Test
+	//test for applyFilter (Black and white filter)
+	public void testBlackAndWhiteFilter() {
+		Picture p = new Picture(100, 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		p.applyFilter("bw");
+		for(int i=0; i<100; i++) {
+			for(int j=0; j<100; j++) {
+				int RGB = p.getPixel(i,j);
+				int r = (RGB>>16) & 255;
+				int g = (RGB>>8) & 255;
+				int b = (RGB) & 255;
+				
+				boolean black = (r==0) && (g==0) && (b==0);
+				boolean white = (r==255) && (g==255) && (b==255);
+				
+				assertTrue(black || white);
+			}
+		}	
+	}
+	
+	@Test
+	//test for applyFilter (Sepia filter)
+	public void testSepiaFilter() {
+		Picture p = new Picture(100, 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		Picture original = new Picture(100, 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		p.applyFilter("sepia");
+		for(int i=0; i<100; i++) {
+			for(int j=0; j<100; j++) {
+				int RGB = p.getPixel(i,j);
+				int r = (RGB>>16) & 255;
+				int g = (RGB>>8) & 255;
+				int b = (RGB) & 255;
+				
+				int RGB_original = original.getPixel(i,j);
+				int r_ori = (RGB_original>>16) & 255;
+				int g_ori = (RGB_original>>8) & 255;
+				int b_ori = (RGB_original) & 255;
+				
+				int gr = (r_ori + g_ori + b_ori)/3;
+				r_ori = g_ori = b_ori = gr;
+				
+				int newR = r_ori + 2*20;
+				if(newR>255) newR = 255;
+				int newG = g_ori + 20;
+				if(newG>255) newG = 255;
+				int newB = b_ori - 20;
+				if(newB<0) newB = 0;
+				
+				boolean r_correct = (r == newR);
+				boolean g_correct = (g == newG);
+				boolean b_correct = (b == newB);
+				
+				
+				assertTrue(r_correct);
+				assertTrue(g_correct);
+				assertTrue(b_correct);
+			}
+		}	
+	}
+	
+	
+	
+	
 	@Test
 	//test setTopic() and getTopic() in Picture class
 	public void testSetTopicAndGetTopic() {

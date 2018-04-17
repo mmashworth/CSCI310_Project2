@@ -103,30 +103,7 @@ public class Picture {
 
 			  int w = img.getWidth();
 			  int h = img.getHeight();
-/*			  
-			  for(int i=0; i<w; i++) {
-				for(int j=0; j<h; j++) {
-					int RGB = getPixel(i, j);
-					int red= (RGB>>16) & 255;
-					int green= (RGB>>8) & 255;
-					int blue= (RGB) & 255;
-					
-					int gray = (red+green+blue)/3;
-					red = green = blue = gray;
-					
-					red += 2*sepiaDepth;
-					green += sepiaDepth;
-					if(red>255) red=255; //clamp
-					if(green>255) green=255; //clamp	
-					blue -= sepiaIntensity;
-					if(blue<0) blue=0; //clamp
-					
-					int newRGB = 0;
-					newRGB = newRGB | (red << 16) | (green << 8) | blue;
-					img.setRGB(i, j, newRGB);
-				}
-			  }
-*/
+
 
 			  WritableRaster raster = img.getRaster();
 
