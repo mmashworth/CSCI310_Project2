@@ -80,11 +80,14 @@ public class Picture {
 			return;
 		}
 		else if(filter.equals("bw")) {
-			ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
-			op.filter(img, img);
+			BufferedImage convertedImg = new BufferedImage(img.getWidth(),img.getHeight(), 
+														  BufferedImage.TYPE_BYTE_BINARY);
+			convertedImg.getGraphics().drawImage(img, 0, 0, null);
+			img = convertedImg;
 		}
 		else if(filter.equals("gs")) {
-			//do grayscale
+			ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+			op.filter(img, img);
 		}
 		else { //sepia filter
 			applySepiaFilter(img, 20);
