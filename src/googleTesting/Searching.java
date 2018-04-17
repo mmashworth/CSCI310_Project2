@@ -85,7 +85,7 @@ public class Searching {
 	    }
 //	    System.out.println(searchResults.size());
 	    
-//	    System.out.println(searchResults.size());
+	    System.out.println("in query: " + searchResults.size());
 	    
 	    return searchResults;
 								//NOTE: It is possible to get images of specific sizes! However, to give a working example,

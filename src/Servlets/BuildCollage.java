@@ -40,16 +40,26 @@ public class BuildCollage extends HttpServlet {
 		response.setContentType("text/html"); //can do text/json, in servlets usually will be text/html
 		Collage newCollage = new Collage();
 		List<String> urls = newCollage.getUrls(topic);
-//		for (int i=0; i < urls.size(); i++) {
-//			System.out.println(urls.get(i));
-//		}
-		
-		int width = Integer.parseInt( request.getParameter("width") );
-		int height = Integer.parseInt( request.getParameter("height") );
-		String filter = request.getParameter("filter");
-		
+		System.out.println("number of urls: " + urls.size());
+		for (int i=0; i < urls.size(); i++) {
+			System.out.println(urls.get(i));
+		}
+	
+
+		String w = request.getParameter("width");
+		String h = request.getParameter("height");
+		int width = 800;
+		int height = 600;
+		if(w != null && h != null) {
+			width = Integer.parseInt( request.getParameter("width") );
+			height = Integer.parseInt( request.getParameter("height") );
+		}
+
+		String filter = request.getParameter("filter");		
 		Picture collageImage = Collage.make30Collage(width, height, urls, newCollage.getAngles());
-		collageImage.applyFilter(filter);
+		
+		if(filter != null)
+			collageImage.applyFilter(filter);
 
 		UserClass.numPreviousSearches++;
 		
