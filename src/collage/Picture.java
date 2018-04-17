@@ -87,71 +87,80 @@ public class Picture {
 			//do grayscale
 		}
 		else { //sepia filter
-			img = toSepia(img, 20);
+			applySepiaFilter(img, 20);
 		}	
 	}	
 	
 	
-	public static BufferedImage toSepia(BufferedImage img, int sepiaIntensity) {
+	public void applySepiaFilter(BufferedImage img, int sepiaIntensity) 
+	{
+// Play around with this.  20 works well and was recommended
+//   by another developer. 0 produces black/white image
+			  int sepiaDepth = 20;
 
-	    BufferedImage sepia = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
-	    // Play around with this.  20 works well and was recommended
-	    //   by another developer. 0 produces black/white image
-	    int sepiaDepth = 20;
+			  int w = img.getWidth();
+			  int h = img.getHeight();
+/*			  
+			  for(int i=0; i<w; i++) {
+				for(int j=0; j<h; j++) {
+					int RGB = getPixel(i, j);
+					int red= (RGB>>16) & 255;
+					int green= (RGB>>8) & 255;
+					int blue= (RGB) & 255;
+					
+					int gray = (red+green+blue)/3;
+					red = green = blue = gray;
+					
+					red += 2*sepiaDepth;
+					green += sepiaDepth;
+					if(red>255) red=255; //clamp
+					if(green>255) green=255; //clamp	
+					blue -= sepiaIntensity;
+					if(blue<0) blue=0; //clamp
+					
+					int newRGB = 0;
+					newRGB = newRGB | (red << 16) | (green << 8) | blue;
+					img.setRGB(i, j, newRGB);
+				}
+			  }
+*/
 
-	    int w = img.getWidth();
-	    int h = img.getHeight();
+			  WritableRaster raster = img.getRaster();
 
-	    WritableRaster raster = sepia.getRaster();
+			  // We need 3 integers (for R,G,B color values) per pixel.
+			  int[] pixels = new int[w*h*4];
+			  raster.getPixels(0, 0, w, h, pixels);
 
-	    // We need 3 integers (for R,G,B color values) per pixel.
-	    int[] pixels = new int[w * h * 3];
-	    img.getRaster().getPixels(0, 0, w, h, pixels);
+			  //  Process 3 ints at a time for each pixel.  Each pixel has 3 RGB colors in array
+			  for (int i=0;i<pixels.length; i+=4)
+			  {
+			    int r = pixels[i];
+			    int g = pixels[i+1];
+			    int b = pixels[i+2];
 
-	    for (int x = 0; x < img.getWidth(); x++) {
-	        for (int y = 0; y < img.getHeight(); y++) {
+			    int gry = (r + g + b) / 3;
+			    r = g = b = gry;
+			    r = r + (sepiaDepth * 2);
+			    g = g + sepiaDepth;
 
-	            int rgb = img.getRGB(x, y);
-	            Color color = new Color(rgb, true);
-	            int r = color.getRed();
-	            int g = color.getGreen();
-	            int b = color.getBlue();
-	            int gry = (r + g + b) / 3;
+			    if (r>255) r=255;
+			    if (g>255) g=255;
+			    if (b>255) b=255;
 
-	            r = g = b = gry;
-	            r = r + (sepiaDepth * 2);
-	            g = g + sepiaDepth;
+			    // Darken blue color to increase sepia effect
+			    b-= sepiaIntensity;
 
-	            if (r > 255) {
-	                r = 255;
-	            }
-	            if (g > 255) {
-	                g = 255;
-	            }
-	            if (b > 255) {
-	                b = 255;
-	            }
+			    // normalize if out of bounds
+			    if (b<0) b=0;
+			    if (b>255) b=255;
 
-	            // Darken blue color to increase sepia effect
-	            b -= sepiaIntensity;
+			    pixels[i] = r;
+			    pixels[i+1]= g;
+			    pixels[i+2] = b;
+			  }
+			  raster.setPixels(0, 0, w, h, pixels);
 
-	            // normalize if out of bounds
-	            if (b < 0) {
-	                b = 0;
-	            }
-	            if (b > 255) {
-	                b = 255;
-	            }
-
-	            color = new Color(r, g, b, color.getAlpha());
-	            sepia.setRGB(x, y, color.getRGB());
-
-	        }
-	    }
-
-	    return sepia;
 	}
-	
 	
 	
 	
