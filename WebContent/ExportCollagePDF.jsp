@@ -9,10 +9,10 @@
     if (currentCollage != null) {
     		System.out.println("topic: " + currentCollage.getTopic());
     }
-    System.out.println("EXPORT aaaaAS: " + request.getSession().getAttribute("exportType"));
-    String fileName = application.getRealPath("/") + "exportedCollage.png";
+
+    String fileName = application.getRealPath("/") + "exportedCollagePDF.pdf";
     System.out.println("fileName: " + fileName);
-    currentCollage.writeImage(fileName, "png");
+    currentCollage.writeImage(fileName, "pdf");
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

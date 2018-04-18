@@ -424,13 +424,10 @@ public class JUnitTest extends Mockito{
 	
 	@Test
 	public void testIsInteger() throws Exception {
-
 	     for(int i=-1000; i<=1000; i++) {
 	    	 	assertTrue(BuildCollage.isInteger(Integer.toString(i)));
-	     }
-	     
-	     assertTrue(!BuildCollage.isInteger("not an integer"));
-	     
+	     }     
+	     assertTrue(!BuildCollage.isInteger("not an integer"));     
 	}
 	
 	
