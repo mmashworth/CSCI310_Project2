@@ -37,20 +37,8 @@ public class BuildCollage extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE html>");
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<title>My Second Servlet</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("<h1>Hello CSCI 201</h1>");
-		out.println("</body>");
-		out.println("</html>");
-		
-		
-		
-		
+		String saveCollage = request.getParameter("saveBox");		
+	
 		System.out.println("----------In build collage servlet-----------");
 		String topic = request.getParameter("topic");
 		System.out.println("topic= " + topic);
@@ -70,9 +58,9 @@ public class BuildCollage extends HttpServlet {
 		String h = request.getParameter("height");
 		
 		if(isInteger(w))
-			width = Integer.parseInt( request.getParameter("width") );
+			width = Integer.parseInt( w );
 		if(isInteger(h))
-			height = Integer.parseInt( request.getParameter("height") );
+			height = Integer.parseInt( h );
 		
 		String filter = request.getParameter("filter");		
 		Picture collageImage = Collage.make30Collage(width, height, urls, newCollage.getAngles());
@@ -82,15 +70,19 @@ public class BuildCollage extends HttpServlet {
 
 		UserClass.numPreviousSearches++;
 		
-		if (UserClass.getNumPreviousSearches() != 0) {
-			UserClass.addPreviousCollage(); //add old collage to list of historical collages
+		if(saveCollage != null) {
+			collageImage.savePicture();
 		}
 		
+		
+		if (UserClass.getNumPreviousSearches() != 0 && UserClass.currentCollage.getSavePicture()) {
+			UserClass.addPreviousCollage(); //add old collage to list of historical collages
+		}
+	
 		UserClass.setCurrentCollage(collageImage); //update current collage to the new search
 		collageImage.setTopic(topic);
-		UserClass.setCurrentCollage(collageImage); //update current collage to the new search
+		//UserClass.setCurrentCollage(collageImage); //update current collage to the new search
 		List<Picture> history = UserClass.getCollages();
-		System.out.println("HERE?????");
 		System.out.println("history size: " + history.size());
 		request.getSession().setAttribute("collageImage", collageImage);
 		request.getSession().setAttribute("topic", topic);

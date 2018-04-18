@@ -69,20 +69,20 @@ function enterInput(pageURL) {
 			<div id="inputStuff">
 				<input type="text" name="topic" placeholder="Enter topic" onkeydown="enterInput('CollageDisplay.jsp')"> <br>
 				<input type="text" name="shape" placeholder="Enter shape"><br>
-				Collage Options <select name = "options"></select><br>
-  				<button name = "save"> Save to History</button></br>
-  				
-				Collage Width <input type="text"  name="width" value="800"> <br>
-				Collage Height <input type="text"  name="height" value="600"> <br>
+			
+				Collage Width <input type="text"  name="width" > <br>
+				Collage Height <input type="text"  name="height" > <br>
 				
+				Image borders <input type="checkBox" checked name="bordersBox" value="borders"> <br>
+				Image rotation <input type="checkBox" checked name="rotationsBox" value="rotations"> <br>			
+				Image filter
 				<select name="filter">
 					<option value="nofilter">No filter</option>
     					<option value="bw">Black and white</option>
     					<option value="gs">Grayscale</option>
     					<option value="sepia">Sepia</option>
-  				</select> <br>
-				
-				
+  				</select> <br>		
+				Save Collage to History <input type="checkBox" name="saveBox" value="saveCollage"> <br>
 				<input type="submit" onclick='loading()' value="Build Collage">
 			</div>
 		</form>

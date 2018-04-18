@@ -26,6 +26,7 @@ public class Picture {
 	private int y_pos = 0;
 	private String url;
 	private BufferedImage img;
+	private boolean savedPicture = false;
 	
 	// use image width and height
 	public Picture(String url_source) {
@@ -44,6 +45,12 @@ public class Picture {
 				
 	}
 	
+	public void savePicture() {
+		savedPicture = true;
+	}
+	public boolean getSavePicture() {
+		return savedPicture;
+	}
 	
 	
 	// with specified width and height

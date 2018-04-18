@@ -13,6 +13,12 @@ import googleTesting.Searching;
 
 
 public final class Collage {
+	boolean savedCollage = false;
+	
+	public void saveCollage() {
+		savedCollage = true;
+	}
+	
 	public List<String> getUrls(String topic) {
 		
 		Searching newSearch = new Searching();

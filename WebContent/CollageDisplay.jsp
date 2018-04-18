@@ -55,6 +55,14 @@
 				xhttp.send();
 			}
 		</script>
+		<script>
+			function exportCollagePDF() {
+				var seconds = new Date().getTime() / 1000;
+				var xhttp= new XMLHttpRequest();
+				xhttp.open("GET", "ExportCollagePDF.jsp?type=export&random="+seconds, false);
+				xhttp.send();
+			}
+		</script>
 	</head>
 	<body>
 		<!-- This is where we are saving the pictures that we will use in the collage -->
@@ -81,7 +89,8 @@
 				<br />
 				<input type="text" id="inputBox" name="topic" placeholder="Enter another topic">
 				<input type="submit" value="Build Another Collage">
-				<button type="button" id="exportButton" onclick = "exportCollage()">Export Collage</button>
+				<button type="button" id="exportButtonPNG" onclick = "exportCollage()">Export Collage as PNG</button>
+				<button type="button" id="exportButtonPDF" onclick = "exportCollagePDF()">Export Collage as PDF</button>
 			</div>
 		</form>
 		
