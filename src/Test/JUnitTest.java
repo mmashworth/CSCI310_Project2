@@ -145,10 +145,14 @@ public class JUnitTest extends Mockito{
 				int g = (RGB>>8) & 255;
 				int b = (RGB) & 255;
 				
-				boolean black = (r==0) && (g==0) && (b==0);
-				boolean white = (r==255) && (g==255) && (b==255);
+			
 				
-				assertTrue(black || white);
+				//in most cases r=b=g
+				//some rounding cases (probably) where difference is 1
+				boolean rg = (Math.abs(r-g) <= 1);
+				boolean gb = (Math.abs(g-b) <= 1);
+
+				assertTrue(rg && gb); //if r=g and g=b, then r=b also
 			}
 		}	
 	}
