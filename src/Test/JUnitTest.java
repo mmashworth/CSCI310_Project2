@@ -457,8 +457,8 @@ public class JUnitTest extends Mockito{
 	     when(request.getSession()).thenReturn(session);
 	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
 	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
-	     when(request.getParameter("rotationsBox")).thenReturn("rotations"); 
-	     when(request.getParameter("bordersBox")).thenReturn("borders");
+	     when(request.getParameter("rotationsBox")).thenReturn("rotations"); /////
+	     when(request.getParameter("bordersBox")).thenReturn("borders");//////
 	     UserClass.numPreviousSearches++;
 	     
 	     new BuildCollage().service(request, response);
@@ -475,8 +475,8 @@ public class JUnitTest extends Mockito{
 	     when(request.getParameter("topic")).thenReturn("dog"); 
 	     when(request.getSession()).thenReturn(session);
 	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
-	     when(request.getParameter("rotationsBox")).thenReturn(null); 
-	     when(request.getParameter("bordersBox")).thenReturn("borders");
+	     when(request.getParameter("rotationsBox")).thenReturn(null); /////
+	     when(request.getParameter("bordersBox")).thenReturn("borders");//////
 	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
 	     UserClass.numPreviousSearches++;
 	     	     
@@ -494,8 +494,8 @@ public class JUnitTest extends Mockito{
 	     when(request.getParameter("topic")).thenReturn("dog"); 
 	     when(request.getSession()).thenReturn(session);
 	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
-	     when(request.getParameter("rotationsBox")).thenReturn("rotations"); 
-	     when(request.getParameter("bordersBox")).thenReturn(null); 
+	     when(request.getParameter("rotationsBox")).thenReturn("rotations"); /////
+	     when(request.getParameter("bordersBox")).thenReturn(null); /////
 	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
 	     UserClass.numPreviousSearches++;
 	     	     
@@ -513,11 +513,33 @@ public class JUnitTest extends Mockito{
 	     when(request.getParameter("topic")).thenReturn("dog"); 
 	     when(request.getSession()).thenReturn(session);
 	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
-	     when(request.getParameter("rotationsBox")).thenReturn(null); 
-	     when(request.getParameter("bordersBox")).thenReturn(null);
+	     when(request.getParameter("rotationsBox")).thenReturn(null); /////
+	     when(request.getParameter("bordersBox")).thenReturn(null);//////
 	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
 	     UserClass.numPreviousSearches++;
 	     	     
+	     new BuildCollage().service(request, response);
+	}
+	
+	@Test
+	public void testBuildInvalidDimensions() throws Exception {
+		MockitoAnnotations.initMocks(this);  
+		 HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpServletResponse response = mock(HttpServletResponse.class);
+	     HttpSession session = mock(HttpSession.class);
+	     RequestDispatcher rd = mock(RequestDispatcher.class);
+	     
+	     when(request.getParameter("topic")).thenReturn("dog"); 
+	     when(request.getSession()).thenReturn(session);
+	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
+	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
+	     UserClass.numPreviousSearches++;
+	     
+	     /////
+	     when(request.getSession().getAttribute("width")).thenReturn("not an int");
+	     when(request.getSession().getAttribute("height")).thenReturn("also not an int"); 
+	     //////
+	     
 	     new BuildCollage().service(request, response);
 	}
 	
