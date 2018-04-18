@@ -68,7 +68,9 @@ public final class Collage {
 		for (int k = 0; k < nameList.size(); k++) {
 			String name = nameList.get(k);
 			Picture pict = new Picture(width, height, name);
-			pict.addFrame();
+			
+			if(borders)
+				pict.addFrame();
 			// rotate the picture to angel degree
 			int angel = angelList.get(k).intValue();
 			if ( angel != 0 )

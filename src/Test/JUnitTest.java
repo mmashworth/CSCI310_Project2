@@ -91,7 +91,7 @@ public class JUnitTest extends Mockito{
 		Collage collage = new Collage();
 		List<String> urls = collage.getUrls("dog");
 		List<Integer> testAngles = collage.getAngles();
-		Picture testPic = collage.make30Collage(800, 600, urls, testAngles);
+		Picture testPic = collage.make30Collage(800, 600, urls, testAngles, true, true);
 		
 		assertTrue(testPic.getWidth() == 800);
 		
@@ -103,7 +103,7 @@ public class JUnitTest extends Mockito{
 		Collage collage = new Collage();
 		List<String> urls = collage.getUrls("dog");
 		List<Integer> testAngles = collage.getAngles();
-		Picture testPic = collage.make30Collage(800, 600, urls, testAngles);
+		Picture testPic = collage.make30Collage(800, 600, urls, testAngles, true, true);
 		
 		assertTrue(testPic.getHeight() == 600);
 		
