@@ -19,9 +19,7 @@ function enterInput(pageURL) {
 		var event = e || window.event;
 	    var charCode = event.which || event.keyCode;
 	
-	    if ( charCode == '13' ) {
-	      // Enter pressed
-	      
+	    if ( charCode == '13' ) {// Enter pressed	      
 	      window.location.href = pageURL;
 	      return false;
 	    }
@@ -41,5 +39,8 @@ function enterInput(pageURL) {
 			<button type="button" id="inputButton" onclick="openPage('CollageDisplay.jsp')" />Build Collage</button>
 		</div>
 	</form>
+	
+	<img src="loading.gif">
+	
 </body>
 </html>

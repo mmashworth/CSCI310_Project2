@@ -423,15 +423,13 @@ public class JUnitTest extends Mockito{
 	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
 	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
 	     UserClass.numPreviousSearches++;
-	
 	     
 	     new BuildCollage().service(request, response);
-
-	     
-	     
-	    
-
-
+	}
+	
+	@Test
+	public void testUsernameAndPassword() throws Exception {
+		
 	}
 	
 }

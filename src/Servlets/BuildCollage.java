@@ -1,5 +1,6 @@
 package Servlets;
 
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -34,6 +35,22 @@ public class BuildCollage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>My Second Servlet</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<h1>Hello CSCI 201</h1>");
+		out.println("</body>");
+		out.println("</html>");
+		
+		
+		
+		
 		System.out.println("----------In build collage servlet-----------");
 		String topic = request.getParameter("topic");
 		System.out.println("topic= " + topic);
