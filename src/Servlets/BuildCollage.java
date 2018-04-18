@@ -57,9 +57,9 @@ public class BuildCollage extends HttpServlet {
 		String w = request.getParameter("width");
 		String h = request.getParameter("height");
 		
-		if(isInteger(w))
+		if(w != null && isInteger(w))
 			width = Integer.parseInt( w );
-		if(isInteger(h))
+		if(h != null && isInteger(h))
 			height = Integer.parseInt( h );
 		
 		//get rotations 
@@ -89,8 +89,10 @@ public class BuildCollage extends HttpServlet {
 		}
 		
 		
-		if (UserClass.getNumPreviousSearches() != 0 && UserClass.currentCollage.getSavePicture()) {
-			UserClass.addPreviousCollage(); //add old collage to list of historical collages
+		if (UserClass.getNumPreviousSearches() != 0) {
+			if(UserClass.currentCollage != null && UserClass.currentCollage.getSavePicture()) {
+				UserClass.addPreviousCollage(); //add old collage to list of historical collages
+			}
 		}
 	
 		UserClass.setCurrentCollage(collageImage); //update current collage to the new search

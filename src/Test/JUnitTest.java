@@ -108,6 +108,16 @@ public class JUnitTest extends Mockito{
 		assertTrue(testPic.getHeight() == 600);
 		
 	}
+	
+	@Test
+	public void testMakeCollage() {
+		Collage c = new Collage();
+		List<String> urls = c.getUrls("dog");
+		List<Integer> testAngles = c.getAngles();
+		
+		Picture testPic = c.make30Collage(800, 600, urls, testAngles, true, true);
+		assertTrue(testPic.getImage() != null);
+	}
 
 	/**
 	 * Tests for Picture.java
@@ -447,8 +457,67 @@ public class JUnitTest extends Mockito{
 	     when(request.getSession()).thenReturn(session);
 	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
 	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
+	     when(request.getParameter("rotationsBox")).thenReturn("rotations"); 
+	     when(request.getParameter("bordersBox")).thenReturn("borders");
 	     UserClass.numPreviousSearches++;
 	     
+	     new BuildCollage().service(request, response);
+	}
+	
+	@Test
+	public void testBuildNoRotations() throws Exception {
+		MockitoAnnotations.initMocks(this);  
+		 HttpServletRequest request = mock(HttpServletRequest.class);       
+         HttpServletResponse response = mock(HttpServletResponse.class);
+	     HttpSession session = mock(HttpSession.class);
+	     RequestDispatcher rd = mock(RequestDispatcher.class);
+	     
+	     when(request.getParameter("topic")).thenReturn("dog"); 
+	     when(request.getSession()).thenReturn(session);
+	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
+	     when(request.getParameter("rotationsBox")).thenReturn(null); 
+	     when(request.getParameter("bordersBox")).thenReturn("borders");
+	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
+	     UserClass.numPreviousSearches++;
+	     	     
+	     new BuildCollage().service(request, response);
+	}
+	
+	@Test
+	public void testBuildNoBorders() throws Exception {
+		MockitoAnnotations.initMocks(this);  
+		 HttpServletRequest request = mock(HttpServletRequest.class);       
+         HttpServletResponse response = mock(HttpServletResponse.class);
+	     HttpSession session = mock(HttpSession.class);
+	     RequestDispatcher rd = mock(RequestDispatcher.class);
+	     
+	     when(request.getParameter("topic")).thenReturn("dog"); 
+	     when(request.getSession()).thenReturn(session);
+	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
+	     when(request.getParameter("rotationsBox")).thenReturn("rotations"); 
+	     when(request.getParameter("bordersBox")).thenReturn(null); 
+	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
+	     UserClass.numPreviousSearches++;
+	     	     
+	     new BuildCollage().service(request, response);
+	}
+	
+	@Test
+	public void testBuildNoBordersNoRotations() throws Exception {
+		MockitoAnnotations.initMocks(this);  
+		 HttpServletRequest request = mock(HttpServletRequest.class);       
+         HttpServletResponse response = mock(HttpServletResponse.class);
+	     HttpSession session = mock(HttpSession.class);
+	     RequestDispatcher rd = mock(RequestDispatcher.class);
+	     
+	     when(request.getParameter("topic")).thenReturn("dog"); 
+	     when(request.getSession()).thenReturn(session);
+	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
+	     when(request.getParameter("rotationsBox")).thenReturn(null); 
+	     when(request.getParameter("bordersBox")).thenReturn(null);
+	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
+	     UserClass.numPreviousSearches++;
+	     	     
 	     new BuildCollage().service(request, response);
 	}
 	

@@ -39,6 +39,7 @@
  {
 	document.getElementById("loadingSymbol").style.visibility = "visible";
 	document.getElementById("inputStuff").style.visibility = "hidden";
+	document.body.style.backgroundColor = "white";
  	//window.location.href = pageURL;
  }
 </script>
