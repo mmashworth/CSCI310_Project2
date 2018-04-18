@@ -410,6 +410,30 @@ public class JUnitTest extends Mockito{
 		assertTrue(isCatched);
 	}
 	
+	
+	
+	@Test
+	public void testUsernameAndPassword() throws Exception {
+		
+	}
+	
+	
+	/*
+	 * Tests for BuildCollage.java
+	 */
+	
+	@Test
+	public void testIsInteger() throws Exception {
+
+	     for(int i=-1000; i<=1000; i++) {
+	    	 	assertTrue(BuildCollage.isInteger(Integer.toString(i)));
+	     }
+	     
+	     assertTrue(!BuildCollage.isInteger("not an integer"));
+	     
+	}
+	
+	
 	@Test
 	public void testBuildCollage() throws Exception {
 		MockitoAnnotations.initMocks(this);  
@@ -427,9 +451,6 @@ public class JUnitTest extends Mockito{
 	     new BuildCollage().service(request, response);
 	}
 	
-	@Test
-	public void testUsernameAndPassword() throws Exception {
-		
-	}
+	
 	
 }

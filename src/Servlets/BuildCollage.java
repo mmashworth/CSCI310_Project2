@@ -63,15 +63,17 @@ public class BuildCollage extends HttpServlet {
 		}
 	
 
-		String w = request.getParameter("width");
-		String h = request.getParameter("height");
+		
 		int width = 800;
 		int height = 600;
-		if(w != null && h != null) {
+		String w = request.getParameter("width");
+		String h = request.getParameter("height");
+		
+		if(isInteger(w))
 			width = Integer.parseInt( request.getParameter("width") );
+		if(isInteger(h))
 			height = Integer.parseInt( request.getParameter("height") );
-		}
-
+		
 		String filter = request.getParameter("filter");		
 		Picture collageImage = Collage.make30Collage(width, height, urls, newCollage.getAngles());
 		
@@ -96,6 +98,19 @@ public class BuildCollage extends HttpServlet {
 		//RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/CollageDisplay.jsp");
 		RequestDispatcher dispatch = request.getRequestDispatcher("/CollageDisplay.jsp");
 		dispatch.forward(request, response);
+	}
+	
+
+	public static boolean isInteger(String s) {
+	    if(s.isEmpty()) return false;
+	    for(int i = 0; i < s.length(); i++) {
+	        if(i == 0 && s.charAt(i) == '-') {
+	            if(s.length() == 1) return false;
+	            else continue;
+	        }
+	        if(Character.digit(s.charAt(i),10) < 0) return false;
+	    }
+	    return true;
 	}
 
 }

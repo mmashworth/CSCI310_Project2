@@ -72,8 +72,8 @@ function enterInput(pageURL) {
 				Collage Options <select name = "options"></select><br>
   				<button name = "save"> Save to History</button></br>
   				
-				Collage Width <input type="range" min="100" max="1000" step="50" name="width" value="800"> <br>
-				Collage Height <input type="range" min="100" max="1000" step="50" name="height" value="600"> <br>
+				Collage Width <input type="text"  name="width" value="800"> <br>
+				Collage Height <input type="text"  name="height" value="600"> <br>
 				
 				<select name="filter">
 					<option value="nofilter">No filter</option>
