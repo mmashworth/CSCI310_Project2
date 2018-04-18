@@ -544,5 +544,50 @@ public class JUnitTest extends Mockito{
 	}
 	
 	
+	@Test
+	public void testSaveToHistory() throws Exception {
+		 MockitoAnnotations.initMocks(this);  
+		 HttpServletRequest request = mock(HttpServletRequest.class);       
+         HttpServletResponse response = mock(HttpServletResponse.class);
+	     HttpSession session = mock(HttpSession.class);
+	     RequestDispatcher rd = mock(RequestDispatcher.class);
+	     
+	     when(request.getParameter("topic")).thenReturn("dog"); 
+	     when(request.getSession()).thenReturn(session);
+	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
+	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
+	     UserClass.numPreviousSearches++;
+	     
+	     when(request.getParameter("saveBox") ).thenReturn("saveCollage");  
+	     new BuildCollage().service(request, response);
+	     new BuildCollage().service(request, response);
+	     
+	     //should have saved the first collage
+	     assertTrue(UserClass.getCollages().size() == 1);
+	}
+	
+	@Test
+	public void testSaveToHistoryNoSave() throws Exception {
+		 MockitoAnnotations.initMocks(this);  
+		 HttpServletRequest request = mock(HttpServletRequest.class);       
+         HttpServletResponse response = mock(HttpServletResponse.class);
+	     HttpSession session = mock(HttpSession.class);
+	     RequestDispatcher rd = mock(RequestDispatcher.class);
+	     
+	     when(request.getParameter("topic")).thenReturn("dog"); 
+	     when(request.getSession()).thenReturn(session);
+	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
+	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
+	     UserClass.numPreviousSearches++;
+	     
+	     when(request.getParameter("saveBox") ).thenReturn(null);  
+	     new BuildCollage().service(request, response);
+	     new BuildCollage().service(request, response);
+	     
+	     //should not have saved the first collage
+	     assertTrue(UserClass.getCollages().size() == 0);
+	}
+	
+	
 	
 }
