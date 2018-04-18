@@ -51,7 +51,7 @@ public class BuildCollage extends HttpServlet {
 		}
 	
 
-		
+		//get width and height right
 		int width = 800;
 		int height = 600;
 		String w = request.getParameter("width");
@@ -62,8 +62,22 @@ public class BuildCollage extends HttpServlet {
 		if(isInteger(h))
 			height = Integer.parseInt( h );
 		
+		//get rotations 
+		String rotationsStr = request.getParameter("rotationsBox");	
+		boolean rotations = false;
+		if(rotationsStr != null)
+			rotations = true;
+		//get borders
+		String bordersStr = request.getParameter("bordersBox");
+		boolean borders = false;
+		if(bordersStr != null)
+			borders = true;
+			
+		
 		String filter = request.getParameter("filter");		
-		Picture collageImage = Collage.make30Collage(width, height, urls, newCollage.getAngles());
+		Picture collageImage = Collage.make30Collage(width, height, urls, 
+													newCollage.getAngles(), 
+													rotations, borders);
 		
 		if(filter != null)
 			collageImage.applyFilter(filter);

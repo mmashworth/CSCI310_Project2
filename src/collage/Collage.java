@@ -43,7 +43,16 @@ public final class Collage {
 	}
 	
 	
-	public static Picture make30Collage (int new_width, int new_height, List<String> nameList, List<Integer> angelList) {
+	public static Picture make30Collage (int new_width, int new_height, List<String> nameList, 
+									    List<Integer> angelList, boolean rotations, boolean borders) 
+	{
+		if(!rotations) {
+			for(int i=0; i<angelList.size(); i++) {
+				angelList.set(i, Integer.valueOf(0));
+			}
+		}
+		
+		
 		Picture pictNew = new Picture (new_width, new_height);
 		System.out.println(nameList.size());
 		int row = 5;
