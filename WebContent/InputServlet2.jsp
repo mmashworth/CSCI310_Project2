@@ -36,7 +36,6 @@
 </script>
 
 <script type="text/javascript">
-
 function enterInput(pageURL) {
 	document.getElementById('inputBox').onkeypress = function(e) {
 		var event = e || window.event;

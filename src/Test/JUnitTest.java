@@ -134,6 +134,26 @@ public class JUnitTest extends Mockito{
 	}
 	
 	@Test
+	//test for applyFilter (Grayscale filter)
+	public void testGrayscaleFilter() {
+		Picture p = new Picture(100, 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		p.applyFilter("gs");
+		for(int i=0; i<100; i++) {
+			for(int j=0; j<100; j++) {
+				int RGB = p.getPixel(i,j);
+				int r = (RGB>>16) & 255;
+				int g = (RGB>>8) & 255;
+				int b = (RGB) & 255;
+				
+				boolean black = (r==0) && (g==0) && (b==0);
+				boolean white = (r==255) && (g==255) && (b==255);
+				
+				assertTrue(black || white);
+			}
+		}	
+	}
+	
+	@Test
 	//test for applyFilter (Sepia filter)
 	public void testSepiaFilter() {
 		Picture p = new Picture(100, 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");

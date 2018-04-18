@@ -33,6 +33,7 @@ public class Searching {
 	//Will return a List<String> of url's. If there are insufficient URL's, will throw an IOE exception
 	//Currently does not return .gif files. Please check to make sure that this is not a requirement
 	public List<String> searchQuery(String query) throws IOException {	//"Throws exception" is exceptionally shitty coding-- I'll change this later
+	System.out.println("IN QUERY");
 		List<String> searchResults = new ArrayList<>();
 	    String qry=query;											//This is a hardcoded value for testing
 	    qry = qry.replace(" ","\\");
