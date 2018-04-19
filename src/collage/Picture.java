@@ -12,10 +12,22 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.io.FileNotFoundException;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 import javax.swing.*;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.BadElementException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Picture {
 	private String topic;
@@ -27,6 +39,68 @@ public class Picture {
 	private String url;
 	private BufferedImage img;
 	private boolean savedPicture = false;
+	
+	private final String DEST = "/Users/markashworth/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/CSCI310Project1";
+	
+	
+	public void makePDF() {
+		if(img == null)
+			return;
+		
+		System.out.println("in makePDF in Picture.java");
+	    
+		
+		BufferedImage imgCopy = img;
+		if(img.getWidth() > 580) {
+			int newW = 580;
+			double ratio = ((double) newW) / img.getWidth();
+			double tmpH = ratio * ((double) img.getHeight());
+			int newH = ((int) tmpH);
+		
+		    imgCopy = resize(img, newW, newH);
+		}
+		
+		if(imgCopy.getHeight() > 820) {
+			int newH = 820;
+			double ratio = ((double) newH) / imgCopy.getHeight();
+			double tmpW = ratio * ((double) imgCopy.getWidth());
+			int newW = ((int) tmpW);
+			
+			imgCopy = resize(imgCopy, newW, newH);
+		}
+
+		
+		
+	    
+	    Document document = new Document();
+	    PdfWriter writer;
+	    try {
+	    		writer = PdfWriter.getInstance(document, 
+	    						new FileOutputStream(DEST+"/exportCollage1.pdf"));
+	    
+	    		document.open();
+	    		document.add(new Chunk(""));
+	    	
+	    		PdfContentByte pdfCB = new PdfContentByte(writer);
+	    		com.itextpdf.text.Image image;
+	    		image = com.itextpdf.text.Image.getInstance(pdfCB, imgCopy, 1);
+	    System.out.println("HEREEEEE");
+	        image.setAbsolutePosition(300- image.getScaledWidth() / 2, 420 - image.getScaledHeight() / 2);
+	        document.add(image);
+
+	    		document.close();
+	    } catch(FileNotFoundException fnfe) {
+	    		System.out.println("fnfe-----------------");
+	      }
+	    	  catch(DocumentException de) {
+	    		  System.out.println("de-----------------");
+	    	  }
+	      catch(IOException ie) {
+	    	  System.out.println("ie-----------------");
+	      }
+	    
+	}
+	
 	
 	// use image width and height
 	public Picture(String url_source) {

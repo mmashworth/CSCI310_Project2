@@ -65,7 +65,20 @@
 		</script>
 		<script>
 			function returnToIndex() {
-				window.location.replace("inputServlet2.jsp");
+				window.location.replace("/inputServlet2.jsp");
+			}
+		</script>
+		<script>
+			function goToExportServlet() {
+			    var xhr = new XMLHttpRequest();
+			    xhr.onreadystatechange = function() {
+			        if (xhr.readyState == 4) {
+			            var data = xhr.responseText;
+			            alert(data);
+			        }
+			    }
+			    xhr.open('GET', 'PDFExport', true);
+			    xhr.send(null);
 			}
 		</script>
 	</head>
@@ -94,7 +107,7 @@
 				<br />
 			<!--	<input type="text" id="inputBox" name="topic" placeholder="Enter another topic"> -->
 			<!-- <input type="submit" value="Build Another Collage"> -->
-				Build Another Collage<button type="button" id="build" onclick = "returnToIndex()" >
+				<button type="button" id="build" onclick = "returnToIndex()" > Build Another Collage </button>
 				<button type="button" id="exportButtonPNG" onclick = "exportCollage()">Export Collage as PNG</button>
 				<button type="button" id="exportButtonPDF" onclick = "exportCollagePDF()">Export Collage as PDF</button>
 			</div>

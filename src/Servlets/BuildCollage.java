@@ -35,7 +35,23 @@ public class BuildCollage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+		/* 
+		 * directed here after logging in,
+		 * so query DB and see if that username has been registered...
+		 */
 		
+		/* TODO
+		 * If it has, then fill previousCollage & numPreviousSearches in user class
+		 */
+
+		/* TODO
+		 * If it has not, push their information to the DB as a new entry
+		 */
+		
+		
+		
+		/////////////////////////////////////////////////////////////////////////////////////////
 		
 		String saveCollage = request.getParameter("saveBox");		
 	
@@ -78,10 +94,15 @@ public class BuildCollage extends HttpServlet {
 		Picture collageImage = Collage.make30Collage(width, height, urls, 
 													newCollage.getAngles(), 
 													rotations, borders);
-		
-		
 		collageImage.applyFilter(filter);
+		
+		/* TODO
+		 * At this point the collage is done, push it to the BD
+		 */
 
+		
+		//////////////////////////////////////////////////////////////
+		
 		UserClass.numPreviousSearches++;
 		
 		if(saveCollage != null) {
