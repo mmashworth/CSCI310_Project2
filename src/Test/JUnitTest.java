@@ -37,6 +37,8 @@ import org.mockito.stubbing.OngoingStubbing;
 import Servlets.BuildCollage;
 import collage.User.UserClass;
 
+import login.*;
+
 public class JUnitTest extends Mockito{
 	/**
 	 * Tests for Collage.java
@@ -651,6 +653,38 @@ public class JUnitTest extends Mockito{
 	     //UserClass.getCollages is used to display the history
 	     //2 collages are save, 1 is not -> 2 collages should be in the gallery now
 	     assertTrue(UserClass.getCollages().size() == 1);
+	}
+	
+	/*
+	 * LoginValidation.java tests
+	 */
+	
+	@Test
+	public void testLogin() throws Exception {
+		MockitoAnnotations.initMocks(this);  
+		 HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpServletResponse response = mock(HttpServletResponse.class);
+	     HttpSession session = mock(HttpSession.class);
+	     RequestDispatcher rd = mock(RequestDispatcher.class);
+	     
+	     when(request.getSession()).thenReturn(session);
+	     when(request.getRequestDispatcher("/InputServlet2.jsp")).thenReturn(rd);
+	     
+	     when(request.getParameter("username")).thenReturn("Tommy"); 
+	     when(request.getParameter("password")).thenReturn("Trojan"); 
+	     new LoginValidation().service(request, response);
+	     
+	     when(request.getParameter("username")).thenReturn("NotTommy"); 
+	     when(request.getParameter("password")).thenReturn("Trojan"); 
+	     new LoginValidation().service(request, response);
+	     
+	     when(request.getParameter("username")).thenReturn("Tommy"); 
+	     when(request.getParameter("password")).thenReturn("NotTrojan"); 
+	     new LoginValidation().service(request, response);
+	     
+	     when(request.getParameter("username")).thenReturn("NotTommy"); 
+	     when(request.getParameter("password")).thenReturn("NotTrojan"); 
+	     new LoginValidation().service(request, response);
 	}
 	
 	
