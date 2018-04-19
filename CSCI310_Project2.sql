@@ -15,6 +15,8 @@ CREATE TABLE collages (
     topic varchar(50) NOT NULL DEFAULT 'null',
     filepath varchar(500) NOT NULL DEFAULT 'null',
     userID int(11) NOT NULL,
+       width int(11) NOT NULL,
+    height int(11) NOT NULL,
     
-    FOREIGN KEY fk1(userID) REFERENCES users(userID)
+    FOREIGN KEY fk1(username) REFERENCES users(username)
 );

@@ -1,5 +1,6 @@
 package login;
 
+import database.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,13 +32,22 @@ public class LoginValidation extends HttpServlet {
 	
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");	
-		if(username.equals("Tommy") && password.equals("Trojan")) {
+		
+		DataContainer dc = new DataContainer();
+		boolean valid = dc.searchForUser(username, password);
+		
+		
+		if(valid) {
+			dc.populateUserClass(username);
+			request.setAttribute("username", username);
 			response.sendRedirect("InputServlet2.jsp");
 		}
 		else
 			response.sendRedirect("login.html");
 		
+		
 	}
+	
 
 	
 

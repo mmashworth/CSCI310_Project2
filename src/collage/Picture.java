@@ -24,7 +24,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.BadElementException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

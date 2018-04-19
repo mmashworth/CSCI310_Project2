@@ -15,6 +15,7 @@ import collage.Collage;
 import collage.Picture;
 import collage.User;
 import collage.User.UserClass;
+import database.*;
 
 /**
  * Servlet implementation class BuildCollage
@@ -35,25 +36,12 @@ public class BuildCollage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-		/* 
-		 * directed here after logging in,
-		 * so query DB and see if that username has been registered...
-		 */
-		
-		/* TODO
-		 * If it has, then fill previousCollage & numPreviousSearches in user class
-		 */
-
-		/* TODO
-		 * If it has not, push their information to the DB as a new entry
-		 */
-		
-		
-		
-		/////////////////////////////////////////////////////////////////////////////////////////
 		
 		String saveCollage = request.getParameter("saveBox");		
+	
+		/////////////////////////////////////////////////////////////////////////////////////////
+		
+		//String saveCollage = request.getParameter("saveBox");		
 	
 		System.out.println("----------In build collage servlet-----------");
 		String topic = request.getParameter("topic");
@@ -97,8 +85,10 @@ public class BuildCollage extends HttpServlet {
 		collageImage.applyFilter(filter);
 		
 		/* TODO
-		 * At this point the collage is done, push it to the BD
+		 * At this point the collage is done, push it to the DB
 		 */
+		DataContainer dc = new DataContainer();
+		dc.addCollageToDB(collageImage, UserClass.username);
 
 		
 		//////////////////////////////////////////////////////////////
