@@ -107,10 +107,8 @@ public class Picture {
 // Play around with this.  20 works well and was recommended
 //   by another developer. 0 produces black/white image
 			  int sepiaDepth = 20;
-
 			  int w = img.getWidth();
 			  int h = img.getHeight();
-
 
 			  WritableRaster raster = img.getRaster();
 
@@ -132,27 +130,18 @@ public class Picture {
 
 			    if (r>255) r=255;
 			    if (g>255) g=255;
-			    if (b>255) b=255;
 
 			    // Darken blue color to increase sepia effect
 			    b-= sepiaIntensity;
 
 			    // normalize if out of bounds
 			    if (b<0) b=0;
-			    if (b>255) b=255;
-
 			    pixels[i] = r;
 			    pixels[i+1]= g;
 			    pixels[i+2] = b;
 			  }
 			  raster.setPixels(0, 0, w, h, pixels);
-
 	}
-	
-	
-	
-	
-	
 	
 	public String getTopic() {
 		return topic;

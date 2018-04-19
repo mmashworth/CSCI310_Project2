@@ -18,6 +18,9 @@ public final class Collage {
 	public void saveCollage() {
 		savedCollage = true;
 	}
+	public boolean getSaveCollage() {
+		return savedCollage;
+	}
 	
 	public List<String> getUrls(String topic) {
 		

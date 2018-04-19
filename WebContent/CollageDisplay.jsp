@@ -63,6 +63,11 @@
 				xhttp.send();
 			}
 		</script>
+		<script>
+			function returnToIndex() {
+				window.location.replace("inputServlet2.jsp");
+			}
+		</script>
 	</head>
 	<body>
 		<!-- This is where we are saving the pictures that we will use in the collage -->
@@ -87,8 +92,9 @@
 		<form method = "GET" action="BuildCollage" >
 			<div id="inputStuff">
 				<br />
-				<input type="text" id="inputBox" name="topic" placeholder="Enter another topic">
-				<input type="submit" value="Build Another Collage">
+			<!--	<input type="text" id="inputBox" name="topic" placeholder="Enter another topic"> -->
+			<!-- <input type="submit" value="Build Another Collage"> -->
+				Build Another Collage<button type="button" id="build" onclick = "returnToIndex()" >
 				<button type="button" id="exportButtonPNG" onclick = "exportCollage()">Export Collage as PNG</button>
 				<button type="button" id="exportButtonPDF" onclick = "exportCollagePDF()">Export Collage as PDF</button>
 			</div>

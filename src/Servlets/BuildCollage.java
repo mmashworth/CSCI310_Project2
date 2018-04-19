@@ -79,8 +79,8 @@ public class BuildCollage extends HttpServlet {
 													newCollage.getAngles(), 
 													rotations, borders);
 		
-		if(filter != null)
-			collageImage.applyFilter(filter);
+		
+		collageImage.applyFilter(filter);
 
 		UserClass.numPreviousSearches++;
 		
