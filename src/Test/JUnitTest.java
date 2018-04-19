@@ -134,6 +134,13 @@ public class JUnitTest extends Mockito{
 	 */
 	
 	@Test
+	//test for makePDF
+	public void testMakePDF() {
+		Picture p = new Picture(400, 2000, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		p.makePDF();
+	}
+	
+	@Test
 	//test for no filter
 	public void testNoFilter() {
 		Picture p = new Picture(100, 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
