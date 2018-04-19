@@ -41,6 +41,14 @@ public class JUnitTest extends Mockito{
 	/**
 	 * Tests for Collage.java
 	 */
+	
+	@Test
+	public void testSaveCollage() {
+		Collage c = new Collage();
+		c.saveCollage();
+		assertTrue(c.getSaveCollage());
+	}
+	
 	//test for getUrls()
 	@Test
 	public void testGetCatUrls() {
@@ -122,6 +130,33 @@ public class JUnitTest extends Mockito{
 	/**
 	 * Tests for Picture.java
 	 */
+	
+	@Test
+	//test for no filter
+	public void testNoFilter() {
+		Picture p = new Picture(100, 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		Picture p_original = new Picture(100, 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		p.applyFilter("nofilter");
+		for(int i=0; i<100; i++) {
+			for(int j=0; j<100; j++) {
+				int RGB = p.getPixel(i,j);
+				int r = (RGB>>16) & 255;
+				int g = (RGB>>8) & 255;
+				int b = (RGB) & 255;
+				
+				int RGB_original = p_original.getPixel(i,j);
+				int r2 = (RGB_original>>16) & 255;
+				int g2 = (RGB_original>>8) & 255;
+				int b2 = (RGB_original) & 255;
+				
+				boolean red = (r==r2);
+				boolean green = (g==g2);
+				boolean blue = (b==b2);
+				
+				assertTrue(red && green && blue);
+			}
+		}
+	}
 	
 	@Test
 	//test for applyFilter (Black and white filter)
@@ -442,6 +477,9 @@ public class JUnitTest extends Mockito{
 	    	 	assertTrue(BuildCollage.isInteger(Integer.toString(i)));
 	     }     
 	     assertTrue(!BuildCollage.isInteger("not an integer"));     
+	     assertTrue(!BuildCollage.isInteger(""));
+	     assertTrue(!BuildCollage.isInteger("-"));
+	     assertTrue(!BuildCollage.isInteger("-bbbb"));
 	}
 	
 	
@@ -587,6 +625,34 @@ public class JUnitTest extends Mockito{
 	     //should not have saved the first collage
 	     assertTrue(UserClass.getCollages().size() == 0);
 	}
+	
+	
+	
+	@Test
+	public void testGalleryCorrect() throws Exception {
+		 MockitoAnnotations.initMocks(this);  
+		 HttpServletRequest request = mock(HttpServletRequest.class);       
+         HttpServletResponse response = mock(HttpServletResponse.class);
+	     HttpSession session = mock(HttpSession.class);
+	     RequestDispatcher rd = mock(RequestDispatcher.class);
+	     
+	     when(request.getParameter("topic")).thenReturn("dog"); 
+	     when(request.getSession()).thenReturn(session);
+	     when(request.getSession().getAttribute("topic")).thenReturn("dog");
+	     when(request.getRequestDispatcher("/CollageDisplay.jsp")).thenReturn(rd);
+	     UserClass.numPreviousSearches++;
+	     
+	     when(request.getParameter("saveBox") ).thenReturn("saveCollage");  
+	     new BuildCollage().service(request, response);
+	     when(request.getParameter("saveBox") ).thenReturn(null); 
+	     new BuildCollage().service(request, response);
+	     new BuildCollage().service(request, response);
+	     
+	     //UserClass.getCollages is used to display the history
+	     //2 collages are save, 1 is not -> 2 collages should be in the gallery now
+	     assertTrue(UserClass.getCollages().size() == 1);
+	}
+	
 	
 	
 	
