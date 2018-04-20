@@ -11,19 +11,18 @@ body {
 #inputStuff {
 	position: absolute;
 	top: 50%;
- 	left: 50%;	
+ 	left: 50%;
  	height: 30px;
 	display: block;
     margin-left: auto;
     margin-right: auto;
+    /*  make sure this is in the foreground*/
 }
 
 #inputButton {
 	background-color: #a9a9a9;
 	color: white;
 }
-
-
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
@@ -31,6 +30,7 @@ body {
     width: 120px;
     height: 120px;
     animation: spin 2s linear infinite;
+    /*  keep these animations for now*/
 }
 
 @keyframes spin {
