@@ -5,6 +5,7 @@
 <head>
 
   <link rel="stylesheet" href="inputStyle.css">
+	<!--JS Script-->
 <script type="text/javascript">
  function openPage(pageURL)
  {
