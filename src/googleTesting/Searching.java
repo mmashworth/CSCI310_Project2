@@ -27,7 +27,7 @@ public class Searching {
 	    key="AIzaSyC07Jw7fiw4uHcEiH_rXC6AP0Ohp2COi2E";
 	    //"AIzaSyA-x7a0GxK2bs5H8uXAvl0KRF6e_-O-cDo";//
 	    cx="016372075374369882146:uqrovp3x_6s";				//This is a hardcoded value-- it is the search engine key
-	    searchCount = 1;
+	    searchCount = 1;	//Number of searches to make
 	}
 	
 	
@@ -35,12 +35,12 @@ public class Searching {
 	//Currently does not return .gif files. Please check to make sure that this is not a requirement
 	public List<String> searchQuery(String query) throws IOException {	//"Throws exception" is exceptionally shitty coding-- I'll change this later
 	System.out.println("IN QUERY");
-		List<String> searchResults = new ArrayList<>();
+		List<String> searchResults = new ArrayList<>(); //The list of results
 	    String qry=query;											//This is a hardcoded value for testing
 	    qry = qry.replace(" ","\\");
 	    Boolean resultCheck = false;
 //	    System.out.println(qry);
-	    for(int i=1; searchResults.size()<30; i=i+10){
+	    for(int i=1; searchResults.size()<30; i=i+10){ //Adds results 10 at a time (10 per search)
 //	    	System.out.println(searchResults.size());
 		    URL url = new URL(
 		            "https://www.googleapis.com/customsearch/v1?key="+key+ "&cx="+cx+"&q="+ qry + "&alt=json&excludeTerms=gif|svg&searchType=image&num=10&start="+i);
@@ -64,7 +64,7 @@ public class Searching {
 		    	
 		    	
 		    	
-		        if(output.contains("\"link\": \"")){
+		        if(output.contains("\"link\": \"")){ //If it's a valid link
 		            String link=output.substring(output.indexOf("\"link\": \"")+("\"link\": \"").length(), output.indexOf("\","));
 		            URL u = new URL(link); 
 	        	    HttpURLConnection huc =  (HttpURLConnection)  u.openConnection();
