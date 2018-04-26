@@ -40,7 +40,7 @@ public class Picture {
 	private boolean savedPicture = false;
 	
 	private final String DEST = "/Users/markashworth/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/CSCI310Project1";
-	
+	private final String DEST2 = "/Users/markashworth/git/CSCI310_Project2/exports";
 	
 	public void makePDF() {
 		if(img == null)
@@ -74,8 +74,9 @@ public class Picture {
 	    Document document = new Document();
 	    PdfWriter writer;
 	    try {
+	    		String file = "/" + this.getTopic() + "Collage.pdf";
 	    		writer = PdfWriter.getInstance(document, 
-	    						new FileOutputStream(DEST+"/exportCollage1.pdf"));
+	    						new FileOutputStream(DEST2+file));
 	    
 	    		document.open();
 	    		document.add(new Chunk(""));
@@ -118,6 +119,12 @@ public class Picture {
 				
 	}
 	
+	public Picture(BufferedImage bi) {
+		img = bi;
+		height = bi.getHeight();
+		width = bi.getWidth();
+	}
+	
 	public void savePicture() {
 		savedPicture = true;
 	}
@@ -156,7 +163,7 @@ public class Picture {
 	public void applyFilter(String filter) {
 		System.out.println("FILTERING THE COLLAGE");
 		
-		if(filter.equals("nofilter")) {
+		if(filter == null || filter.equals("nofilter")) {
 			return;
 		}
 		else if(filter.equals("bw")) {

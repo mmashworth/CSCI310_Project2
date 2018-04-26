@@ -17,6 +17,10 @@ import collage.User;
 import collage.User.UserClass;
 import database.*;
 
+import java.io.File;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
 /**
  * Servlet implementation class BuildCollage
  */
@@ -76,29 +80,41 @@ public class BuildCollage extends HttpServlet {
 		boolean borders = false;
 		if(bordersStr != null)
 			borders = true;
-			
-		
+				
 		String filter = request.getParameter("filter");		
 		Picture collageImage = Collage.make30Collage(width, height, urls, 
 													newCollage.getAngles(), 
 													rotations, borders);
 		collageImage.applyFilter(filter);
 		
-		/* TODO
-		 * At this point the collage is done, push it to the DB
-		 */
-		DataContainer dc = new DataContainer();
-		dc.addCollageToDB(collageImage, UserClass.username);
-
 		
-		//////////////////////////////////////////////////////////////
+		DataContainer dc = new DataContainer();
+		
+		
+		System.out.println("username: " + UserClass.username);
+		
+		
+		//dc.addCollageToDB(collageImage, UserClass.username);		 //add collage to the database
+		//////////////////////////////////////////////////////////////////
 		
 		UserClass.numPreviousSearches++;
 		
 		if(saveCollage != null) {
 			collageImage.savePicture();
+			
+			//add this collage to the 
+			int numPrevCollages = UserClass.getCollages().size()+1;
+			String offset = Integer.toString(numPrevCollages);
+			String saveDir = "/Users/markashworth/git/CSCI310_Project2/collages/";
+			String collageFileName = saveDir + UserClass.username + "_" + topic + "_" + offset + ".png";
+				
+			//outputCollageToFolder(collageImage.getImage(), collageFileName);
+			File outputfile = new File(collageFileName);
+			
+			File dir = new File("/Users/markashworth/git/CSCI310_Project2/collages/");
+			ImageIO.write(collageImage.getImage(), "png", outputfile);	
 		}
-		
+			
 		
 		if (UserClass.getNumPreviousSearches() != 0) {
 			if(UserClass.currentCollage != null && UserClass.currentCollage.getSavePicture()) {
@@ -110,6 +126,12 @@ public class BuildCollage extends HttpServlet {
 		collageImage.setTopic(topic);
 		//UserClass.setCurrentCollage(collageImage); //update current collage to the new search
 		List<Picture> history = UserClass.getCollages();
+		
+		System.out.println("number of prev pictures (in build collage): " + history.size());
+		for(Picture p :history) {
+			System.out.println(p.getTopic());
+		}
+		
 		System.out.println("history size: " + history.size());
 		request.getSession().setAttribute("collageImage", collageImage);
 		request.getSession().setAttribute("topic", topic);
@@ -131,5 +153,18 @@ public class BuildCollage extends HttpServlet {
 	    }
 	    return true;
 	}
+	
+	public static void outputCollageToFolder(BufferedImage img, String filename) {
+		try {
+			File outputfile = new File(filename);
+//			System.out.println(outputfile.getAbsolutePath());
+//			System.out.println(filename);
+//			System.out.println(img.getWidth());
+			ImageIO.write(img, "png", outputfile); /////
+		} catch(IOException ioe) {
+			
+		}
+	}
+
 
 }

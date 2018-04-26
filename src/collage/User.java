@@ -10,6 +10,7 @@ public class User {
 		public static int numPreviousSearches = -1;
 		public static String username;
 		
+			
 		public static List<Picture> getCollages(){
 			return previousCollages;
 		}
