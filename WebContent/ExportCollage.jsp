@@ -10,7 +10,8 @@
     		System.out.println("topic: " + currentCollage.getTopic());
     }
     System.out.println("EXPORT aaaaAS: " + request.getSession().getAttribute("exportType"));
-    String fileName = application.getRealPath("/") + "exportedCollage.png";
+    String currTopic = currentCollage.getTopic();
+    String fileName = "/Users/markashworth/git/CSCI310_Project2/exports/" + currTopic + "Collage.png";
     System.out.println("fileName: " + fileName);
     currentCollage.writeImage(fileName, "png");
     %>

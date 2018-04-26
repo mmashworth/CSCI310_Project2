@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import collage.User.UserClass;
+
 /**
  * Servlet implementation class LoginValidation
  */
@@ -42,8 +44,8 @@ public class LoginValidation extends HttpServlet {
 		// exists within the data container the user is redirected to the collage build page, which is InputServlet2
 		
 		if(valid) {
+			UserClass.username = username;
 			dc.populateUserClass(username);
-			request.setAttribute("username", username);
 			response.sendRedirect("InputServlet2.jsp");
 		}
 		else

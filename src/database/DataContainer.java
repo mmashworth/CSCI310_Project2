@@ -6,10 +6,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import java.awt.Graphics2D;
 import collage.Picture;
 import collage.User.UserClass;
+import java.io.File;
+import java.util.Vector;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //import Objects.File;
+
+import javax.imageio.ImageIO;
 
 public class DataContainer {
 	private String driverString;
@@ -85,53 +95,41 @@ public class DataContainer {
 	}
 	
 	public void populateUserClass(String username) {		
-		Connection conn = null;
-		PreparedStatement ps = null;	
-		ResultSet resultSet = null;
+		System.out.println("populating user class");
 		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(driverString);
-		} catch(ClassNotFoundException cnfe) {
-			System.out.println("EXCEPTION - cnfe: " + cnfe.getMessage() + ", trying to connect JDBC ");
-			cnfe.printStackTrace();
-		} catch(SQLException sqle) {
-			System.out.println("EXCEPTION - sqle: " + sqle.getMessage() + ", trying to make conn");
-			sqle.printStackTrace();
-		}
-			
-		try {
-			int userID = -1;
-			
-			ps = conn.prepareStatement("SELECT * FROM users WHERE username=?");
-			ps.setString(1, username);
-			resultSet = ps.executeQuery();
-			while(resultSet.next())
-				userID = resultSet.getInt("userID");	
-			
-			ps = conn.prepareStatement("SELECT * FROM collages WHERE userID=?");
-			ps.setInt(1, userID);
-			resultSet = ps.executeQuery();
-			
-			//maybe clear user class first?
-			UserClass.resetUserClass();
-			
-			while(resultSet.next()) {
-				//each loop build another Picture
-				int width = resultSet.getInt("width");
-				int height = resultSet.getInt("height");
-				String filepath = resultSet.getString("filepath");
+		UserClass.resetUserClass();
+		UserClass.username = username;
+		//pull all files from collages directory
+		Vector<File> userFiles = getUserFiles(username);
+		System.out.println("User already has " + userFiles.size() + " files");
+		for(int i=0; i<userFiles.size(); i++) {
+			try {
+				BufferedImage in = ImageIO.read(userFiles.get(i));
+				BufferedImage newImage = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_ARGB);
+				Graphics2D g = newImage.createGraphics();
+				g.drawImage(in, 0, 0, null);
+				g.dispose();
 				
-				Picture p = new Picture(width, height, filepath);
-				p.setTopic(resultSet.getString("topic"));
-
-				UserClass.numPreviousSearches++;
+				System.out.println("abs path: " + userFiles.get(i).getAbsolutePath());
+				String filename = userFiles.get(i).getName();
+				int firstDel = filename.indexOf("_");
+				String fileNoName = filename.substring(firstDel+1);
+				int secondDel = fileNoName.indexOf("_");
+				String topic = fileNoName.substring(0, secondDel);
+				
+				Picture p = new Picture(newImage);
+				p.setTopic(topic);
 				UserClass.addCollage(p);
-				UserClass.username = username;
-			}			
-		} catch(SQLException sqle) {
-			System.out.println("sqle2 in DC.java: " + sqle.getMessage());
+				UserClass.numPreviousSearches++;				
+			} catch(IOException ioe) {	
+				
+			}
 		}		
+		List<Picture> pictures = UserClass.getCollages();
+		System.out.println("number of prev pictures: " + pictures.size());
+		for(Picture p : pictures) {
+			System.out.println(p.getTopic());
+		}						
 	}
 	
 	public void addCollageToDB(Picture pic, String username) {
@@ -174,6 +172,35 @@ public class DataContainer {
 			System.out.println("sqle3 in DC.java: " + sqle.getMessage());
 		}
 	}
+
+
+	public static Vector<File> getUserFiles(String username) {
+		Vector<File> userFiles = new Vector<File>();
+		
+		File dir = new File("/Users/markashworth/git/CSCI310_Project2/collages/");
+		System.out.println(dir.getAbsolutePath());
+		File[] directoryListing = dir.listFiles();
+		if (directoryListing != null) {
+		  for (File child : directoryListing) {
+			  System.out.println(child.getName());
+			  String file = child.getName();
+			  int firstDel = file.indexOf("_");
+
+			  if(firstDel == -1 || file.equals(".DS_Store")) continue;
+			  
+			  String user = file.substring(0, firstDel);
+			  System.out.println("|" + username + "|");
+			  System.out.println("|" + user + "|");
+			  if(user.equals(username)) {
+				  	System.out.println("adding a file for this user");
+				  	userFiles.add(child);	
+			  }
+		  }
+		} 
+			
+		return userFiles;
+	}
+
 }
 
 

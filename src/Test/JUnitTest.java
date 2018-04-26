@@ -36,6 +36,7 @@ import org.mockito.stubbing.OngoingStubbing;
 
 import Servlets.BuildCollage;
 import collage.User.UserClass;
+import database.*;
 
 import login.*;
 
@@ -370,6 +371,7 @@ public class JUnitTest extends Mockito{
 		assertTrue(yPos != p.getYPos());
 	}
 	
+	
 	@Test
 	//Test addFrame()
 	public void testAddFrame() {
@@ -479,6 +481,16 @@ public class JUnitTest extends Mockito{
 	/*
 	 * Tests for BuildCollage.java
 	 */
+	@Test
+	public void testImageSave() throws Exception {
+		Picture p1 = new Picture("https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		String saveDir = "collages/";
+		String collageFileName = saveDir + "testImage3" + ".png";
+	
+		BuildCollage.outputCollageToFolder(p1.getImage(), collageFileName);
+	}
+	
+	
 	
 	@Test
 	public void testIsInteger() throws Exception {
@@ -694,7 +706,13 @@ public class JUnitTest extends Mockito{
 	     new LoginValidation().service(request, response);
 	}
 	
+	/*
+	 * Tests for DataContainer.java
+	 */
 	
-	
+	@Test
+	public void testGetFiles() throws Exception {
+		DataContainer.getUserFiles("mark");
+	}
 	
 }
