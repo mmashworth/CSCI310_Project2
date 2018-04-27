@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import java.util.Random;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -769,10 +770,13 @@ public class JUnitTest extends Mockito{
 	public void testUserCheck() throws Exception {
 		DataContainer dc = new DataContainer();
 		
-		dc.searchForUser("test", "testpw");
-		dc.searchForUser("test2", "testpw");
-		dc.searchForUser("test", "testpw");
-		dc.searchForUser("test", "anIncorrectPassword");
+		Random rand = new Random();
+		int  n = rand.nextInt(2000000000) + 1;	
+		String username = Integer.toString(n);
+		
+		dc.searchForUser(username, "testpw"); //first login
+		dc.searchForUser(username, "testpw"); //login with an existing account
+		dc.searchForUser(username, "anIncorrectPassword"); //attempt to login to an existing account
 		
 	}
 	
