@@ -1,5 +1,6 @@
 package Test;
 
+
 import static org.junit.Assert.*;
 
 import java.awt.image.BufferedImage;
@@ -162,11 +163,28 @@ public class JUnitTest extends Mockito{
 		assertTrue(f.exists());
 		f.delete();
 		
+		Picture p3 = new Picture(2000, 400, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		p3.setTopic("test");
+		p3.makePDF();
+		f = new File(collageFileName);
+		assertTrue(f.exists());
+		f.delete();
+		
 		Picture p2 = new Picture("not an actual source");
 		p2.setTopic("invalid");
 		p2.makePDF();
 		f = new File(saveDir + "invalidCollage" + ".pdf");
 		assertTrue(!f.exists());
+		
+	}
+	
+	@Test
+	//test for making the overlay
+	public void testApplyShape() {
+		Picture p = new Picture(800, 600, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		p.setTopic("test");
+		p.applyShape("hello");
+				
 		
 	}
 	
@@ -757,6 +775,7 @@ public class JUnitTest extends Mockito{
 		dc.searchForUser("test", "anIncorrectPassword");
 		
 	}
+	
 	
 	
 	

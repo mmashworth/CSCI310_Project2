@@ -56,8 +56,7 @@ public class BuildCollage extends HttpServlet {
 		System.out.println("number of urls: " + urls.size());
 		for (int i=0; i < urls.size(); i++) {
 			System.out.println(urls.get(i));
-		}
-	
+		}	
 
 		//get width and height right
 		int width = 800;
@@ -86,6 +85,15 @@ public class BuildCollage extends HttpServlet {
 													newCollage.getAngles(), 
 													rotations, borders);
 		collageImage.applyFilter(filter);
+		
+		String shape = request.getParameter("shape");
+		System.out.println("shape: " + shape);
+		if(shape != null) {
+			//TODO make buffered image from this string
+			System.out.println("\t making shape");
+			collageImage.applyShape(shape);
+			
+		}
 		
 		
 		DataContainer dc = new DataContainer();
