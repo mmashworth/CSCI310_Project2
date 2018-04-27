@@ -5,15 +5,14 @@
     
     <%
     System.out.println("in ExportCollage.jsp");
-    Picture currentCollage = (Picture)request.getSession().getAttribute("collageImage");
+    Picture currentCollage = (Picture)request.getSession().getAttribute("collageImage");   
     if (currentCollage != null) {
-    		System.out.println("topic: " + currentCollage.getTopic());
+    		System.out.println("\t topic: " + currentCollage.getTopic());
+    		currentCollage.exportPNG();
     }
-    System.out.println("EXPORT aaaaAS: " + request.getSession().getAttribute("exportType"));
-    String currTopic = currentCollage.getTopic();
+    /* String currTopic = currentCollage.getTopic();
     String fileName = "/Users/markashworth/git/CSCI310_Project2/exports/" + currTopic + "Collage.png";
-    System.out.println("fileName: " + fileName);
-    currentCollage.writeImage(fileName, "png");
+    currentCollage.writeImage(fileName, "png"); */
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

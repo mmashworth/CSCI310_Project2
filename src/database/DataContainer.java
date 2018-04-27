@@ -29,17 +29,17 @@ public class DataContainer {
 		//populateDataContainer();
 	}
 		
-	public DataContainer(String username, String password, String ipaddress, String ssl) {
-		driverString = "jdbc:mysql://localhost/csci_310_project2?user=root&password=orange212&useSSL=true";
-		
-		if(password.equals("")) { //no password was entered
-			driverString = "jdbc:mysql://" + ipaddress + "/csci_310_project2?user="+ username + "&useSSL=" + ssl;
-		}
-		else { //some password was entered
-			driverString = "jdbc:mysql://" + ipaddress + "/csci_310_project2?user="+ username +"&password=" + password + "&useSSL=" + ssl;
-		}
-		//populateDataContainer();
-	}
+//	public DataContainer(String username, String password, String ipaddress, String ssl) {
+//		driverString = "jdbc:mysql://localhost/csci_310_project2?user=root&password=orange212&useSSL=true";
+//		
+//		if(password.equals("")) { //no password was entered
+//			driverString = "jdbc:mysql://" + ipaddress + "/csci_310_project2?user="+ username + "&useSSL=" + ssl;
+//		}
+//		else { //some password was entered
+//			driverString = "jdbc:mysql://" + ipaddress + "/csci_310_project2?user="+ username +"&password=" + password + "&useSSL=" + ssl;
+//		}
+//		//populateDataContainer();
+//	}
 	
 	public boolean searchForUser(String username, String password) {
 		Connection conn = null;
@@ -80,18 +80,11 @@ public class DataContainer {
 				ps.setString(1, username);
 				ps.setString(2, password);
 				ps.execute();
-				
-				//TODO make somewhere to store their collages
 				return true;
-			}
-			
-			System.out.println("THIS SHOULD NEVER BE PRINTED (DC.JAVA)");
-			return false;
-			
+			}		
 		} catch(SQLException sqle) {
-			System.out.println("sqle1 in DC.java: " + sqle.getMessage());
-			return false;
 		}	
+		return false;
 	}
 	
 	public void populateUserClass(String username) {		
