@@ -37,6 +37,7 @@
 <script type="text/javascript">
  function loading()
  {
+	<!-- Shows loading symbol when the collage is in the building process -->
 	document.getElementById("loadingSymbol").style.visibility = "visible";
 	document.getElementById("inputStuff").style.visibility = "hidden";
 	document.body.style.backgroundColor = "white";
@@ -45,6 +46,7 @@
 </script>
 
 <script type="text/javascript">
+<!-- Calls loading symbol function and begins building collage -->
 function enterInput(pageURL) {
 	document.getElementById('inputBox').onkeypress = function(e) {
 		var event = e || window.event;

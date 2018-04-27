@@ -13,6 +13,10 @@ import collage.User.UserClass;
 /**
  * Servlet implementation class LoginValidation
  */
+/*This login implementtion is now secured with SSL
+  To check secure login put https:// in front of the URL
+  and change the port to 8443.
+*/ 
 @WebServlet("/LoginValidation")
 public class LoginValidation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
