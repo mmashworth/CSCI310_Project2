@@ -12,6 +12,7 @@
 		<title></title>
 		
 		<script>
+		<!-- Changes the title to the correct topic when a new collage is built -->
 			function changeTitle(element) {
 				document.getElementById('topic').innerHTML = element.value;
 			}
@@ -48,6 +49,7 @@
 		</script>
 		
 		<script>
+		<!-- Allows user to export the collage -->
 			function exportCollage() {
 				var seconds = new Date().getTime() / 1000;
 				var xhttp= new XMLHttpRequest();
@@ -56,6 +58,7 @@
 			}
 		</script>
 		<script>
+		<!--  Allows the user to export the collage as a PDF-->
 			function exportCollagePDF() {
 				var seconds = new Date().getTime() / 1000;
 				var xhttp= new XMLHttpRequest();
