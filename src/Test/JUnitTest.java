@@ -135,10 +135,39 @@ public class JUnitTest extends Mockito{
 	 */
 	
 	@Test
-	//test for makePDF
+	//test for PNG export
+	public void testPNGExport() {
+		Picture p = new Picture(400, 2000, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		p.setTopic("test");
+		p.exportPNG();
+		
+		String saveDir = "/Users/markashworth/git/CSCI310_Project2/exports/";
+		String collageFileName = saveDir + "testCollage" + ".png";
+		File f = new File(collageFileName);
+		assertTrue(f.exists());
+		f.delete();
+	}
+	
+	
+	@Test
+	//test for makePDF/ PDF export
 	public void testMakePDF() {
 		Picture p = new Picture(400, 2000, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
+		p.setTopic("test");
 		p.makePDF();
+				
+		String saveDir = "/Users/markashworth/git/CSCI310_Project2/exports/";
+		String collageFileName = saveDir + "testCollage" + ".pdf";
+		File f = new File(collageFileName);
+		assertTrue(f.exists());
+		f.delete();
+		
+		Picture p2 = new Picture("not an actual source");
+		p2.setTopic("invalid");
+		p2.makePDF();
+		f = new File(saveDir + "invalidCollage" + ".pdf");
+		assertTrue(!f.exists());
+		
 	}
 	
 	@Test
@@ -484,10 +513,12 @@ public class JUnitTest extends Mockito{
 	@Test
 	public void testImageSave() throws Exception {
 		Picture p1 = new Picture("https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg/220px-Sabaoth_icon_%28Russia%2C_19_c.%29_2.jpeg");
-		String saveDir = "collages/";
+		String saveDir = "/Users/markashworth/git/CSCI310_Project2/collages/";
 		String collageFileName = saveDir + "testImage3" + ".png";
-	
 		BuildCollage.outputCollageToFolder(p1.getImage(), collageFileName);
+		File f = new File(collageFileName);
+		assertTrue(f.exists());
+		f.delete(); //clean collages directory
 	}
 	
 	
@@ -598,7 +629,10 @@ public class JUnitTest extends Mockito{
 	     when(request.getSession().getAttribute("width")).thenReturn("not an int");
 	     when(request.getSession().getAttribute("height")).thenReturn("also not an int"); 
 	     //////
+	     new BuildCollage().service(request, response);
 	     
+	     when(request.getSession().getAttribute("width")).thenReturn(null);
+	     when(request.getSession().getAttribute("height")).thenReturn(null); 
 	     new BuildCollage().service(request, response);
 	}
 	
@@ -619,10 +653,13 @@ public class JUnitTest extends Mockito{
 	     
 	     when(request.getParameter("saveBox") ).thenReturn("saveCollage");  
 	     new BuildCollage().service(request, response);
-	     new BuildCollage().service(request, response);
-	     
-	     //should have saved the first collage
-	     assertTrue(UserClass.getCollages().size() == 1);
+
+	     String saveDir = "/Users/markashworth/git/CSCI310_Project2/collages/";
+		 String collageFileName = saveDir + "null_dog_1" + ".png";
+		 
+		 File f = new File(collageFileName);
+		 assertTrue(f.exists());
+		 f.delete();
 	}
 	
 	@Test
@@ -641,15 +678,18 @@ public class JUnitTest extends Mockito{
 	     
 	     when(request.getParameter("saveBox") ).thenReturn(null);  
 	     new BuildCollage().service(request, response);
-	     new BuildCollage().service(request, response);
-	     
-	     //should not have saved the first collage
-	     assertTrue(UserClass.getCollages().size() == 0);
+	    
+	     String saveDir = "/Users/markashworth/git/CSCI310_Project2/collages/";
+		 String collageFileName = saveDir + "null_dog_1" + ".png";
+		 
+		 File f = new File(collageFileName);
+		 assertTrue(!f.exists());
 	}
 	
 	
 	
 	@Test
+	//tests that collages get saved to the gallery to be displayed
 	public void testGalleryCorrect() throws Exception {
 		 MockitoAnnotations.initMocks(this);  
 		 HttpServletRequest request = mock(HttpServletRequest.class);       
@@ -665,12 +705,8 @@ public class JUnitTest extends Mockito{
 	     
 	     when(request.getParameter("saveBox") ).thenReturn("saveCollage");  
 	     new BuildCollage().service(request, response);
-	     when(request.getParameter("saveBox") ).thenReturn(null); 
+	     when(request.getParameter("saveBox") ).thenReturn(null);  
 	     new BuildCollage().service(request, response);
-	     new BuildCollage().service(request, response);
-	     
-	     //UserClass.getCollages is used to display the history
-	     //2 collages are save, 1 is not -> 2 collages should be in the gallery now
 	     assertTrue(UserClass.getCollages().size() == 1);
 	}
 	
@@ -693,17 +729,13 @@ public class JUnitTest extends Mockito{
 	     when(request.getParameter("password")).thenReturn("Trojan"); 
 	     new LoginValidation().service(request, response);
 	     
-	     when(request.getParameter("username")).thenReturn("NotTommy"); 
-	     when(request.getParameter("password")).thenReturn("Trojan"); 
+	     when(request.getParameter("username")).thenReturn("mark"); 
+	     when(request.getParameter("password")).thenReturn("not_ashworth");
 	     new LoginValidation().service(request, response);
 	     
 	     when(request.getParameter("username")).thenReturn("Tommy"); 
-	     when(request.getParameter("password")).thenReturn("NotTrojan"); 
-	     new LoginValidation().service(request, response);
-	     
-	     when(request.getParameter("username")).thenReturn("NotTommy"); 
-	     when(request.getParameter("password")).thenReturn("NotTrojan"); 
-	     new LoginValidation().service(request, response);
+	     when(request.getParameter("password")).thenReturn("Trojan"); 
+	     new LoginValidation().service(request, response);     
 	}
 	
 	/*
@@ -715,4 +747,31 @@ public class JUnitTest extends Mockito{
 		DataContainer.getUserFiles("mark");
 	}
 	
+	@Test
+	public void testUserCheck() throws Exception {
+		DataContainer dc = new DataContainer();
+		
+		dc.searchForUser("test", "testpw");
+		dc.searchForUser("test2", "testpw");
+		dc.searchForUser("test", "testpw");
+		dc.searchForUser("test", "anIncorrectPassword");
+		
+	}
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+

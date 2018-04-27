@@ -29,8 +29,6 @@ public final class Collage {
 		try {
 			urls = newSearch.searchQuery(topic);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return urls;
 	}

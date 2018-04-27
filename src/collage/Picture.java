@@ -42,13 +42,20 @@ public class Picture {
 	private final String DEST = "/Users/markashworth/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/CSCI310Project1";
 	private final String DEST2 = "/Users/markashworth/git/CSCI310_Project2/exports";
 	
+	
+	
+	public void exportPNG() {
+		String currTopic = this.getTopic();
+	    String fileName = "/Users/markashworth/git/CSCI310_Project2/exports/" + currTopic + "Collage.png";
+	    this.writeImage(fileName, "png");
+	}
+	
 	public void makePDF() {
 		if(img == null)
 			return;
 		
 		System.out.println("in makePDF in Picture.java");
 	    
-		
 		BufferedImage imgCopy = img;
 		if(img.getWidth() > 580) {
 			int newW = 580;
@@ -58,7 +65,6 @@ public class Picture {
 		
 		    imgCopy = resize(img, newW, newH);
 		}
-		
 		if(imgCopy.getHeight() > 820) {
 			int newH = 820;
 			double ratio = ((double) newH) / imgCopy.getHeight();
@@ -67,10 +73,7 @@ public class Picture {
 			
 			imgCopy = resize(imgCopy, newW, newH);
 		}
-
-		
-		
-	    
+   
 	    Document document = new Document();
 	    PdfWriter writer;
 	    try {
