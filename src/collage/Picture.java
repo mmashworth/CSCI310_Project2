@@ -1,5 +1,8 @@
 package collage;
 
+import java.awt.RenderingHints;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Color;
 import java.awt.image.WritableRaster;
 import java.awt.image.ColorConvertOp;
@@ -41,6 +44,65 @@ public class Picture {
 	
 	private final String DEST = "/Users/markashworth/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/CSCI310Project1";
 	private final String DEST2 = "/Users/markashworth/git/CSCI310_Project2/exports";
+	
+	
+	
+	public void applyShape(String shape) {
+		int imgWidth = img.getWidth();
+		int imgHeight = img.getHeight();
+		
+		BufferedImage cover = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = img.createGraphics();
+        int width = 0;
+        
+        int fontSize = 10;
+        FontMetrics fm = g2d.getFontMetrics();
+        Font font = new Font("Arial", Font.PLAIN, 10);
+        while(width < (imgWidth - 50)) {      		
+        		font = new Font("Arial", Font.PLAIN, fontSize);
+        		g2d.setFont(font);
+        		fm = g2d.getFontMetrics();
+        		width = fm.stringWidth(shape);
+        		height = fm.getHeight();
+        		fontSize += 20;
+        }
+        
+        g2d.dispose();
+        
+        cover = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
+        g2d = cover.createGraphics();
+        
+   
+//        g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+//        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//        g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+//        g2d.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
+//        g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+//        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+//        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+//        g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+        g2d.setFont(font);
+        fm = g2d.getFontMetrics();
+        g2d.setColor(Color.BLACK);
+        g2d.drawString(shape, 0, fm.getAscent());
+        g2d.dispose();
+        try {
+            ImageIO.write(cover, "png", new File("/Users/markashworth/git/CSCI310_Project2/exports/overlay.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+
+        for(int i=0; i<cover.getWidth(); i++) {
+        		for(int j=0; j<cover.getHeight(); j++) {		
+        			if(cover.getRGB(i,j) == 0) {
+        				img.setRGB(i, j, 0);
+        			}
+        		}
+        }
+        
+
+	}
 	
 	
 	
@@ -93,13 +155,10 @@ public class Picture {
 
 	    		document.close();
 	    } catch(FileNotFoundException fnfe) {
-	    		System.out.println("fnfe-----------------");
 	      }
 	    	  catch(DocumentException de) {
-	    		  System.out.println("de-----------------");
 	    	  }
 	      catch(IOException ie) {
-	    	  System.out.println("ie-----------------");
 	      }
 	    
 	}
