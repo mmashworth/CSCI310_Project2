@@ -778,6 +778,7 @@ public class JUnitTest extends Mockito{
 		dc.searchForUser(username, "testpw"); //login with an existing account
 		dc.searchForUser(username, "anIncorrectPassword"); //attempt to login to an existing account
 		
+		
 	}
 	
 	
